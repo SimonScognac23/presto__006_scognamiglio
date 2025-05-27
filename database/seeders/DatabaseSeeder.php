@@ -12,14 +12,27 @@ use Illuminate\Database\Seeder;
 // creiamo un attributo pubblico contenente un array con le categorie che vogliamo avere nel nostro sito
 class DatabaseSeeder extends Seeder
 {
-    public $categories = [
-        'elettronica',
-        'moda',
-        'animali domestici',
-        'motori',
-        'sport',
-        'libri e riviste'
-    ];
+ public $categories = [
+    'elettronica',
+    'moda',
+    'animali domestici',
+    'motori',
+    'sport',
+    'libri e riviste',
+    'casa e giardino',
+    'giocattoli',
+    'informatica',
+    'telefonia',
+    'salute e bellezza',
+    'musica e strumenti musicali',
+    'film e serie TV',
+    'collezionismo',
+    'videogiochi',
+    'fai da te',
+    'alimentari',
+    'arte e artigianato'
+];
+
 
     public function run(): void
     {

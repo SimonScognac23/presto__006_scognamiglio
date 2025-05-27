@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Providers;
+
 use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // 
     }
 
     /**
@@ -22,11 +23,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Specifica che la paginazione di Laravel deve usare Bootstrap
+        Paginator::useBootstrap();
+
+        /*
+            In questo modo controlliamo che esista la tabella 'categories'.
+            Se esiste, condividiamo con tutte le viste del progetto una variabile $categories,
+            contenente la collezione delle categorie presenti nel database, ordinate alfabeticamente.
+        */
         if (Schema::hasTable('categories')) {
             View::share('categories', Category::orderBy('name')->get());
-
         }
     }
 }
 
-// In questa maniera stiamo controllando che esista la tabella categories e, di conseguenza, condividiamo con le viste del nostro progetto una variabile $categories, contenente la collezione delle categorie presenti nel nostro database, riordinate in ordine alfabetico

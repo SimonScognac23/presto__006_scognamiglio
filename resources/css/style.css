@@ -1,3 +1,9 @@
+* {
+    font-family: Arial, sans-serif !important;
+}
+
+
+
 /*-------------------- NAVBAR (Navbar personalizzata) --------------------------------------------------*/
 
 /* Navbar personalizzata rosa antico */
@@ -271,4 +277,48 @@ h1.display-4 {
     font-weight: 700;
     font-size: 3rem;
     color: #000;
+}
+
+/*-------------------- CARD.BLADE.PHP (Pagina di Creazione) -----------------------------------------*/
+
+/*Sfondo a tutta la pagina */
+.background-container {
+    background-image: url('https://wallpapercave.com/wp/wp4410716.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 50vh;
+    /* Occupa solo il 60% del viewport */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Card elegante */
+.custom-card {
+    width: 270px;
+    background-color: rgba(0, 0, 0, 0.85);
+    /* Nero trasparente */
+    color: white;
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+.custom-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.custom-card .card-text {
+    font-size: 1rem;
+}
+
+.custom-card .btn-dark {
+    background-color: #000;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.custom-card .btn-dark:hover {
+    background-color: #333;
 }
