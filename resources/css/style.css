@@ -1,0 +1,274 @@
+/*-------------------- NAVBAR (Navbar personalizzata) --------------------------------------------------*/
+
+/* Navbar personalizzata rosa antico */
+.navbar-custom {
+    background-color: #d8a7b1;
+    /* rosa antico */
+}
+
+/* Colore scritte link nella navbar */
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand {
+    color: #fff;
+    /* bianco */
+    transition: color 0.3s ease;
+}
+
+/* Hover sui link */
+.navbar-custom .nav-link:hover,
+.navbar-custom .navbar-brand:hover {
+    color: #f0a500;
+    /* giallo-arancio */
+}
+
+/* Bottone toggler per mobile - bordo */
+.navbar-custom .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Bottone toggler - icona */
+.navbar-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Spaziatura del logo */
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+/* Spaziatura fra i link */
+.navbar-nav>li {
+    margin-left: 15px;
+}
+
+/* Dropdown menu */
+.navbar-custom .dropdown-menu {
+    background-color: #d8a7b1;
+    border: none;
+}
+
+/* Colore link dropdown */
+.navbar-custom .dropdown-item {
+    color: #fff;
+    transition: background-color 0.2s ease;
+}
+
+/* Hover dropdown */
+.navbar-custom .dropdown-item:hover {
+    background-color: #f0a500;
+    color: #121212;
+}
+
+
+/*-------------------- REGISTER.BLADE.PHP (Pagina di Registrazione) ---------------------------------------*/
+
+/* Sfondo a tutta pagina con immagine personalizzata */
+.register-bg {
+    background-image: url('https://images7.alphacoders.com/317/thumb-1920-317396.JPG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Titolo sopra il form */
+.custom-subtitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Bottone registrazione con testo nero */
+.btn-black-text {
+    color: #000 !important;
+}
+
+/* Logo a destra */
+.logo {
+    position: absolute;
+    top: 85%;
+    right: 2%;
+    transform: translateY(-50%);
+    max-height: 50px;
+}
+
+/* Responsive per mobile */
+@media (max-width: 576px) {
+    .custom-subtitle {
+        font-size: 1.4rem;
+    }
+
+    form {
+        padding: 2rem 1.5rem !important;
+    }
+}
+
+
+/*-------------------- WELCOME.BLADE.PHP (Pagina di Benvenuto) -------------------------------------------*/
+
+/* Imposta l'immagine di sfondo full-screen */
+.home-bg {
+    background-image: url('https://www.goodtrekking.it/media/2025/03/abbigliamento-trekking-primavera.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* Per assicurarmi che il contenitore interno non sia troppo stretto su schermi piccoli */
+.home-content {
+    max-width: 450px;
+}
+
+/* Responsive per cellulari */
+@media (max-width: 576px) {
+    .home-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .home-content h1 {
+        font-size: 2rem;
+    }
+}
+
+
+/*-------------------- FOOTER.BLADE.PHP (Footer personalizzato) ----------------------------------------*/
+
+/* Footer personalizzato rosa antico */
+.footer-custom {
+    background-color: #d8a7b1;
+    color: #fff;
+}
+
+/* Icone social - mantengo il bianco */
+.footer-custom a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+/* Hover sulle icone social - effetto giallo caldo */
+.footer-custom a:hover {
+    color: #f0a500;
+}
+
+/* Responsive per dispositivi piccoli */
+@media (max-width: 576px) {
+    .footer-custom {
+        padding: 1.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-custom i {
+        font-size: 1.5rem;
+    }
+}
+
+
+/*-------------------- LOGIN.BLADE.PHP (Pagina di Login) ----------------------------------------------*/
+
+/* Sfondo personalizzato */
+.login-mg {
+    background-image: url('https://images7.alphacoders.com/317/thumb-1920-317396.JPG');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form di login */
+.form-psycho {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+/* Impostazioni per gli input */
+.input-psycho {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.input-psycho:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Etichette */
+.label-psycho {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Bottone di login */
+.btn-psycho {
+    background-color: #007bff;
+    color: white;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-psycho:hover {
+    background-color: #0056b3;
+}
+
+/* Larghezza del form su dispositivi più grandi */
+@media (min-width: 768px) {
+    .form-psycho {
+        max-width: 500px;
+    }
+}
+
+/* Responsive per dispositivi mobili */
+@media (max-width: 576px) {
+    .form-psycho {
+        padding: 1.5rem;
+    }
+
+    .login-bg {
+        background-attachment: scroll;
+    }
+}
+
+/* Spaziatura tra il titolo e il form */
+.mission-text {
+    margin-bottom: 20px;
+}
+
+
+/*-------------------- CREATE.BLADE.PHP (Pagina di Creazione) -----------------------------------------*/
+
+/* Colore di sfondo bianco con effetto whisper */
+.bg-whisper {
+    background-color: #f8f9fa;
+}
+
+/* Colore del testo nero */
+.text-dark {
+    color: #000;
+}
+
+/* Altezza minima per centrare il contenuto */
+.height-custom {
+    min-height: 100vh;
+}
+
+/* Form con bordo arrotondato */
+.livewire-container {
+    background-color: silver;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Titolo */
+h1.display-4 {
+    font-weight: 700;
+    font-size: 3rem;
+    color: #000;
+}
