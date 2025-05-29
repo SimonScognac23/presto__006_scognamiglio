@@ -5,9 +5,26 @@
       <div class="col-12 col-md-6 bg-white bg-opacity-75 p-4 rounded shadow home-content">
         <h1 class="text-center text-dark display-4 mb-4">Benvenut* nella Home</h1>
 
+
+        @if (session()->has('errorMessage'))
+          <div class="alert alert-danger text-center shadow rounded w-50">
+             {{ session('errorMessage') }}
+          </div>          
+        @endif
+
+        
+            @if (session()->has('message'))
+          <div class="alert alert-danger text-center shadow rounded w-50">
+             {{ session('message') }}
+          </div>          
+        @endif
+
+
+
         @auth
           <a class="btn btn-primary" href="{{ route('create.article') }}">Crea un nuovo articolo</a>
         @endauth
+
       </div>
     </div>
   </div>

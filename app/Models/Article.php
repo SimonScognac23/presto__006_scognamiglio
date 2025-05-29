@@ -7,12 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+
+
+
 class Article extends Model
 {
     use HasFactory;
     protected $fillable = [
         'title', 'description', 'price', 'category_id', 'user_id'
     ];
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
       /**
      * Get the user that owns the article.
@@ -28,8 +36,60 @@ class Article extends Model
           // ci ritorna l'utente collegato al prodotto
     }
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
     public function category(): BelongsTo
     {
+
         return $this->belongsTo(Category::class);
+
     }
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public function setAccepted($value)
+     {
+        //  del singolo articolo prendiamo l’attributo is_accepted e lo valorizziamo con il valore in ingresso.
+        
+        $this->is_accepted = $value;
+        $this->save();
+        return true;
+     }
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+     public static function toBeRevisedCount()
+     {
+
+        return Article::where('is_accepted', null)->count();
+
+        //   toBeRevisedCount() è un metodo statico: sarà invocato a partire dalla classe stessa Article
+
+
+        //  Facciamo una query al database: della tabella  articles prendiamo solo gli articoli che nella colonna is_accepted hanno il dato null.
+        //  Questa query restituirà una collezione
+        
+        //  A partire da questa collezione facciamo partire il metodo count() per contare gli
+        //  articoli non ancora revisionati e restituire il conteggio come valore di output della funzione
+
+
+        // !!!!  Ricorda: questo metodo count() e' un metodo delle collezioni. Non confonderlo con la built-in function count() di PHP. 
+        // !!!!  Quando  lavoriamo su Laravel, preferiamo sempre utilizzare i suoi metodi ed helpers.
+          
+ 
+
+
+     }
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 }

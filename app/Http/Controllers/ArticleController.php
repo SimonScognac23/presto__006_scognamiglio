@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use App\Models\Article; 
+use App\Models\Category;
 
 class ArticleController extends Controller implements HasMiddleware
 {
@@ -14,7 +15,7 @@ class ArticleController extends Controller implements HasMiddleware
         return view('article.create');
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*
         Alla vista 'article.index' stiamo passando gli articoli della nostra piattaforma,
@@ -26,11 +27,16 @@ class ArticleController extends Controller implements HasMiddleware
     */
     public function index()
     {
-        $articles = Article::orderBy('created_at', 'desc')->paginate(6);
+        // $articles = Article::orderBy('created_at', 'desc')->paginate(6);
+        // return view('article.index', compact('articles'));
+
+        // FUNZIONE MODIFICATA VEDI PUNTO 30 U.STORY3
+
+        $articles = Article::where('is_accepted', 'true')->orderBy('created_at', 'desc')->paginate(10);
         return view('article.index', compact('articles'));
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*
         A questa richiesta GET corrisponde una risposta gestita dalla funzione show() 
@@ -42,7 +48,7 @@ class ArticleController extends Controller implements HasMiddleware
         return view('article.show', compact('article'));
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*
         Stiamo richiamando il metodo statico 'middleware' che restituisce un array contenente 
@@ -60,21 +66,25 @@ class ArticleController extends Controller implements HasMiddleware
         ];
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-   
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/* 
-Alla vista article/bycategory.blade.php. stiamo passando due dati:
+    /* 
+    Alla vista article/bycategory.blade.php. stiamo passando due dati:
 
-    - Gli articoli relazionati alla categoria scelta in una variabile chiamata $$articles
-    - La singola categoria, parametro in ingresso nella funzione, in una variabile chiamata $$category
-*/
+        - Gli articoli relazionati alla categoria scelta in una variabile chiamata $$articles
+        - La singola categoria, parametro in ingresso nella funzione, in una variabile chiamata $$category
+    */
 
     public function byCategory(Category $category)
     {
-        return view('article.byCategory', ['articles' => $category->articles, 'category'=> $category]);
+        // return view('article.byCategory', ['articles' => $category->articles, 'category'=> $category]);
 
+        // FUNZIONE MODIFICATA VEDI PUNTO 30 U.STORY3
 
+        $articles = $category->articles->where('is_accepted', true);
+        return view('article.byCategory', compact('articles', 'category'));
     }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

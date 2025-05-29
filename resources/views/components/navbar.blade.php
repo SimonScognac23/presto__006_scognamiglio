@@ -42,7 +42,18 @@
                             @csrf
                         </form>
                     </li>
+
+                        <!-- Stiamo controllando se l’utente autenticato abbia il ruolo revisor -->
+                    @if (Auth::user()->is_revisor)
+                        <li class="nav-item">
+                            <a href="{{ route('revisor.index') }}" class="nav-link btn btn-outline-success btn-sm position-relative-w-sm-25">
+                                Zona Revisore
+                            </a>
+                        </li>
+                    @endif
+
                 @endauth
+
 
                 <!-- Elementi visibili solo agli utenti ospiti (non autenticati) -->
                 @guest
@@ -85,6 +96,7 @@
         </div>
     </div>
 </nav>
+
 
 {{--  
  Questo codice crea un menu a discesa (dropdown) per la navbar con l'elenco delle categorie,
