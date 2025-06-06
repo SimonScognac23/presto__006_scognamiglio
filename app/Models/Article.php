@@ -19,7 +19,7 @@ class Article extends Model
 
 
     protected $fillable = [
-        'title', 'description', 'price', 'category_id', 'user_id'
+        'title', 'description', 'price', 'category_id', 'user_id' , 'img'
     ];
 
 

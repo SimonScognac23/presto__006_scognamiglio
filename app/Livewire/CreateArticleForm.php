@@ -86,7 +86,7 @@ public $img;
 
     ]);
 
-
+dd($article);
 
     // Reset del form
     $this->clearForm();
