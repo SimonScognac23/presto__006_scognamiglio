@@ -26,7 +26,8 @@
     {{-- Footer --}}
     <x-footer />
 
-   
+
+
 
 </body>
 </html>

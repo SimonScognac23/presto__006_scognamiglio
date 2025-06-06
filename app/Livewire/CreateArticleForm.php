@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+
+
+
 class CreateArticleForm extends Component
 {
 
@@ -42,28 +45,56 @@ class CreateArticleForm extends Component
 
      public $article;
 
+#[Validate('nullable|image')]
+public $img;
+
 
      // Nella funzione store richiamiamo il metodo validate per verificare che le regole che abbiamo settato siano rispettate prima di proseguire
      public function store()
 {
-    // Validazione dei dati
-    $this->validate();
 
+  
+
+     $this->user_id = Auth::user()->id;       
+        //Associo l'attributo pubblico user_id a l'id dell'utente autenticato
+
+        if ($this->img) {         
+            //L'utente sta inserendo un immagine?
+
+            $this->validate(['img' => 'image']);  
+            //Se si, allora img oltre che ad essere stato inserito deve essere appunto di tipo image
+
+        } else {
+            $this->validate();   
+            // Faccio partire le regole impostate precedentemente
+        } 
+
+
+        //Creo un nuovo oggetto di classe Article
+        //Richiamo la classe Article con il metodo create
 
     // Creazione dell'articolo (con o senza immagine personalizzata)
-    $this->article = Article::create([
+     $article = Article::create([
         'title' => $this->title,
         'description' => $this->description,
         'price' => $this->price,
         'category_id' => $this->category,
-        'user_id' => Auth::id()
+        'user_id' => Auth::id(),
+
+ 'img' => $this->img ? $this->img->store('img', 'public') : null
+       
+
     ]);
+
+
 
     // Reset del form
     $this->clearForm();
 
-    // Messaggio di successo
-    session()->flash('message', 'Post inserito con successo!');
+      return redirect()->route('homepage')->with('message', 'Articolo creato');
+
+
+ 
 }
 
   protected function clearForm(){  //incapsulo la mia logica dentro un altro metodo 
@@ -73,6 +104,7 @@ class CreateArticleForm extends Component
        $this->description = "";
         $this->category = "";
  $this->price = "";
+ $this->img = null;
 
     }
     

@@ -40,13 +40,24 @@
             </div>
         </div>
 
-         <div>
-                <h2>{{ $article_to_check->title }}</h2>
-                <h3>{{('Autore: ')}} {{ $article_to_check->user->name }} </h3>
-                <h4 class="fst-italic text-muted">{{('Categoria: ')}} {{$article_to_check->category->name }}</h4>
-                <p class="fst-italic text-muted">{{$article_to_check->created_at}}</p>
-                <p>{{ $article_to_check->description }}</p>
-         </div>
+      <div>
+    <h2>{{ $article_to_check->title }}</h2>
+
+    @if($article_to_check->user)
+        <h3>{{ 'Autore: ' . $article_to_check->user->name }}</h3>
+    @else
+        <h3 class="text-danger">Autore non disponibile</h3>
+    @endif
+
+    @if($article_to_check->category)
+        <h4 class="fst-italic text-muted">Categoria: {{ $article_to_check->category->name }}</h4>
+    @else
+        <h4 class="fst-italic text-muted text-danger">Categoria non disponibile</h4>
+    @endif
+
+    <p class="fst-italic text-muted">{{ $article_to_check->created_at }}</p>
+    <p>{{ $article_to_check->description }}</p>
+</div>
 
             <div class="d-flex justify-content-around">
                 <form action="{{ route('reject', ['article'=>$article_to_check]) }}" method="POST">

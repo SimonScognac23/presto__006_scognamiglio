@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory; 
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Searchable;
+
 
 
 
@@ -13,6 +15,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Article extends Model
 {
     use HasFactory;
+    use Searchable;
+
+
     protected $fillable = [
         'title', 'description', 'price', 'category_id', 'user_id'
     ];
@@ -89,7 +94,41 @@ class Article extends Model
 
 
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------USER STORY 10----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+public function toSearchableArray()
+{
+   return [
+      'id'=>$this->id,
+      'title'=>$this->title,
+         'description'=>$this->description,
+           'category'=>$this->category
+
+   ];
+
+}
+
+
+//  !!!!! Con $this->category stiamo richiamando la funzione di relazione con Category , non il nome di una colonna nella tabella.
+
+// Il metodo toSearchableArray() lo uso per dire a Laravel Scout (o TNTSearch) 
+// quali campi del mio modello voglio indicizzare per la ricerca.
+
+// Se non definisco questo metodo, Laravel indicizzerebbe automaticamente tutti gli attributi,
+// ma preferisco specificare solo quelli più importanti per migliorare prestazioni e precisione.
+
+// Se voglio, posso anche aggiungere dati da relazioni, come il nome della categoria 
+// da un altro modello collegato.
+
+
+//----------------------------------USER STORY 10 FINE----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 }

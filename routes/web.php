@@ -15,6 +15,13 @@ use App\Http\Controllers\RevisorController;
 Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
 
 
+    ///  USER STORY 10
+Route::get('/search/article', [PublicController::class, 'searchArticles'])->name('article.search');
+
+
+
+
+
 
 //-----------------------------ARTICOLI-----------------------------------------------------------------------------------------------------------------  
 
@@ -65,3 +72,7 @@ Route::get('/revisor/request', [RevisorController::class, 'becomeRevisor'])->mid
 
 //Rotta make revisor
 Route::get('/make/revisor/{user}', [RevisorController::class, 'makeRevisor'])->name('make.revisor');
+
+
+
+

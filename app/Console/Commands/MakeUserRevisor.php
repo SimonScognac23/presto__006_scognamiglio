@@ -352,6 +352,205 @@ class MakeUserRevisor extends Command
 
 
 
+//   ███████╗██╗███╗   ███╗ ██████╗ ███╗   ██╗███████╗    
+//   ██╔════╝██║████╗ ████║██╔═══██╗████╗  ██║██╔════╝
+//   ███████╗██║██╔████╔██║██║   ██║██╔██╗ ██║█████╗  
+//   ╚════██║██║██║╚██╔╝██║██║   ██║██║╚██╗██║██╔══╝  
+//   ███████║██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║███████╗
+//   ╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+
+
+
+
+/// USER STORY 10 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////              INSTALLAZIONE LARAVEL SCOUT & TNTSEARCH
+
+//// 1   La User Story 10 ci richiede di implementare la ricerca full-text all’interno del nostro progetto.
+//           Per fare ciò iniziamo installando laravel scout con il seguente comando sul terminale:
+//     ------ composer require laravel/scout-------------
+
+// Laravel Scout è un pacchetto che permette di aggiungere la funzionalità di ricerca 
+// full-text alle applicazioni Laravel che utilizzano modelli
+// Eloquent. In altre parole, aiuta a rendere i tuoi dati ricercabili.
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//  2   Pubblichiamo ora il file di configurazione di scout tramite il seguente comando:
+
+//  ------php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"---------------
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//3
+
+//Scout per funzionare ha bisogno di un driver: noi utilizzeremo TNTsearch.
+//Installiamolo:
+
+//   composer require teamtnt/laravel-scout-tntsearch-driver
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//4
+
+//  Una volta finito il processo di installazione iniziato da questo comando, specifichiamo
+//  nel file di configurazione di scout prima pubblicato che
+//  utilizzeremo TNTsearch e le caratteristiche di cui ha bisogno per funzionare.
+//  In config/scout.php :
+
+//  !!!!!!!  Lascia il codice originario di scout.php dove nello screen c'è scritto "resto del codice". Fai attenzione alle chiusure dei vari array.
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//4   Aggiungiamo in .env e in .env.example questa riga di codice:
+
+
+//  SCOUT_DRIVER=tntsearch
+
+//  In questa maniera stiamo specificando che utilizzeremo Scout con il driver tntsearch.
+//  TNTsearch per funzionare fa una indicizzazione degli oggetti presenti nel database relativi al modello 
+// che vogliamo rendere ricercabile
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//  INDICIZZARE GLI ARTICOLI
+
+// 5 Dobbiamo quindi specificare a laravel quale modello vogliamo utilizzare,
+//  grazie al trait di Scout Searchable.
+
+//    Andiamo in Article.php :
+
+//     ------use Searchable;----------
+
+//  Sempre nel modello aggiungiamo la funzione ---> toSearchableArray() <--- fornitaci dal trait Searchable.
+//  Questa funzione è utilizzata per
+//  convertire un'istanza di modello Eloquent in un array che può essere indicizzato da un motore di ricerca
+//  full-text.
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 6  Per creare questo indice dobbiamo lanciare questi comando nel terminale:
+
+//  1 php artisan scout:flush "Percorso\Del\Modello"
+//  2 php artisan scout:import"Percorso\Del\Modello"
+
+//   Nel nostro caso quindi:
+//   ------1 php artisan scout:flush "App\Models\Article"-------
+//   ------2 php artisan scout:import "App\Models\Article"-------
+
+// Il comando php artisan scout:flush rimuove tutti i record di un modello da un indice di ricerca; 
+// il comando php artisan scout:import invece importa tutti i record di un modello in un indice di ricerca.
+
+//   !!!!!!  Se effettui delle modifiche al modello indicizzato con scout, ricordati di lanciare in sequenza questi due comandi.
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 7  Per verificare lo stato di indicizzazione possiamo utilizzare questo comando:
+
+    //  -------php artisan scout:status-------
+
+    //  Tramite questi comandi abbiamo quindi costruito l’indice che 
+    // ci servirà a fare la ricerca nel sito.
+    //Dato che stiamo operando con i nostri database in locale, 
+    // per evitare problemi con gli altri membri del team, ricordiamoci di aggiungere nel
+    //   file ----.gitignore---- questa riga di codice:
+
+    //  ---------->  /storage/*.index     <----------------------
+
+    //   !!!!!  Questo passaggio e' FONDAMENTALE: dimenticarsene vuol dire affrontare merge su merge per tutto il resto del progetto
+
+    //  serire /storage/*.index all’interno del file .gitignore
+    //  e' anche una forma di protezione: all’interno degli indici, infatti,
+    //  potrebbero esserci dei dati sensibili.
+
+
+ //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ // 8 
+
+ //   Creiamo, dunque, nella --navbar-- un FORM per consentire la ricerca:
+
+    //  Per far sì che Scout funzioni, il name associato all’input deve essere necessariamente query
+
+ 
+    
+
+//-------------------------LOGICA DI RICERCA DEGLI ARTICOLI---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+// 9  Creiamo ora la rotta per effettuare la ricerca:  
+// quindi in web.php creiamo la rotta con la funzione searchArticles
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//  10    E la sua funzione:  searchArticles()   ----> in PublicController.php <---------------
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//  11  Creiamo, quindi, article/searched.blade.php 
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 12   Infine, aggiungiamo l' action al form di ricerca nella navbar:  article.search
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// COSÌ FACENDO ABBIAMO FINITO TUTTA LA LOGICA NECESSARIA AL FUNZIONAMENTO DELLA RICERCA FULL-TEXT NEL PROGETTO.
+
+
+
+
+//
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⢄⡲⠖⠛⠉⠉⠉⠉⠉⠙⠛⠿⣿⣶⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⣡⠖⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⢡⣶⠏⠀⠀⠀⠀⠀⠀⣠⣴⣶⣶⣶⣶⣶⣶⣦⣄⣸⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠌⢀⣿⠏⠀⠀⠀⠀⠀⠀⠸⠿⠋⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡞⠀⡼⢿⣦⣄⠠⠤⠐⠒⠒⠒⠢⠤⣄⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀⠀⠀⣸⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⠁⠀⠀⠠⠇⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠈⠙⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⢀⣴⣁⠀⣀⣤⣴⣾⣿⣿⣿⣿⡿⢿⣿⣶⣄⠀⠀⠀⠀⠀⣿⣷⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⡇⠀⢸⣿⣿⣿⡇⠘⠟⣻⣿⣧⠀⠀⠀⠀⢿⣿⣤⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⡿⠀⠀⠸⣿⠿⠋⠉⠁⠛⠻⠿⢿⣧⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⣿⣿⣿⡿⠋⠁⠀⢀⣄⡀⠀⠀⠀⢀⣀⣤⣴⣿⣿⣧⠀⢀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⣿⣿⠏⢀⠀⢀⡴⠿⣿⣿⣷⣶⣾⣿⣿⣿⣿⣿⣿⣿⣇⠀⢷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⣿⣿⣤⣿⣷⡈⠀⠀⠀⠙⠻⣿⣿⣿⣿⠿⠛⠛⣻⣿⣿⡄⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠈⠋⢉⣠⣴⣾⣿⣿⣿⣿⣷⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⢸⣿⣿⢻⡏⢹⠙⡆⠀⠀⠀⠒⠚⢛⣉⣉⣿⣿⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⢀⡞⠁⠉⠀⠁⠀⣄⣀⣠⣴⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣈⡛⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠛⠋⠉⠉⠉⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡷⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⣻⠿⠿⢿⣿⠿⠿⠋⠁⠀⠙⣿⡁⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠛⠋⠉⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠴⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣈⣹⣦⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⣀⣼⣿⣄⣀⣀⡄⠀⣀⣀⣠⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀
+//⠀⠀⠀⠀⠀⢰⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠉⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀
+//⠀⠀⠀⢀⣤⣤⣤⣶⣿⣿⣿⣿⠿⠿⠟⠋⢹⠇⠀⠀⢀⣼⣿⣿⣿⣿⣿⡿⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+//⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⢀⡏⠀⠀⢀⣾⠋⣹⣿⣿⣿⡟⠀⠀⣸⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+//⢠⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⡼⠀⠀⢀⣾⠏⢀⣿⣿⣿⠋⠀⠀⣰⣿⣧⡀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+
+                
+
+
+
+
+
 
 
 

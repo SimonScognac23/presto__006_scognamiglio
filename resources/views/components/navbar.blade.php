@@ -9,7 +9,7 @@
             Presto.it
         </a>
 
-        <!-- Bottone per aprire/chiudere il menu su dispositivi mobili -->
+        <!-- Bottone per il menu responsive (su mobile) -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,13 +37,13 @@
                             Logout
                         </a>
 
-                        <!-- Form nascosto per eseguire il logout -->
+                        <!-- Form nascosto per eseguire il logout (necessario per usare il metodo POST) -->
                         <form id="form-logout" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     </li>
 
-                        <!-- Stiamo controllando se l’utente autenticato abbia il ruolo revisor -->
+                    <!-- Se l’utente ha il ruolo di revisore, mostra il link alla zona revisore -->
                     @if (Auth::user()->is_revisor)
                         <li class="nav-item">
                             <a href="{{ route('revisor.index') }}" class="nav-link btn btn-outline-success btn-sm position-relative-w-sm-25">
@@ -51,28 +51,26 @@
                             </a>
                         </li>
                     @endif
-
                 @endauth
 
-
-                <!-- Elementi visibili solo agli utenti ospiti (non autenticati) -->
+                <!-- Elementi visibili solo agli utenti non autenticati -->
                 @guest
-                    <!-- Link per registrarsi -->
+                    <!-- Link per la registrazione -->
                     <li class="nav-item">
                         <a class="nav-link fw-semibold" href="{{ route('register') }}">Registrati</a>
                     </li>
 
-                    <!-- Link per accedere -->
+                    <!-- Link per il login -->
                     <li class="nav-item">
                         <a class="nav-link fw-semibold" href="{{ route('login') }}">Accedi</a>
                     </li>
 
-                    <!-- Link per vedere tutti gli articoli -->
+                    <!-- Link per visualizzare tutti gli articoli pubblicati -->
                     <li class="nav-item">
                         <a class="nav-link fw-semibold" href="{{ route('article.index') }}">Tutti gli articoli</a>
                     </li>
 
-                    <!-- Dropdown con elenco delle categorie -->
+                    <!-- Dropdown menu con tutte le categorie -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categorie
@@ -84,6 +82,7 @@
                                         {{ $category->name }}
                                     </a>
                                 </li>
+                                <!-- Divisore tra categorie, esclusa l’ultima -->
                                 @if (!$loop->last)
                                     <hr class="dropdown-divider">
                                 @endif
@@ -92,11 +91,18 @@
                     </li>
                 @endguest
 
+                <!-- Barra di ricerca (visibile sempre) USER STORY 10 -->
+                <form class="d-flex ms-auto" role="search" method="GET" action="{{ route('article.search') }}">
+                    <div class="input-group">
+                        <input type="search" name="query" class="form-control" placeholder="Search" aria-label="search">
+                        <button type="submit" class="input-group btn btn-outline-success" id="basic-addon2">Search</button>
+                    </div>
+                </form>
+
             </ul>
         </div>
     </div>
 </nav>
-
 
 {{--  
  Questo codice crea un menu a discesa (dropdown) per la navbar con l'elenco delle categorie,

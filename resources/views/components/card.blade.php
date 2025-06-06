@@ -4,6 +4,7 @@
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="card-title mb-0">{{ $article->title }}</h5>
         <p class="card-text text-white fw-semibold mb-0">€ {{ $article->price }}</p>
+        
       </div>
       <div class="d-flex gap-2">
 
