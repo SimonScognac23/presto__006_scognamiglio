@@ -10,14 +10,17 @@
       <div class="col-12 col-md-8 col-lg-6 position-relative">
 
         <!-- Aggiungi il logo piccolo a destra -->
-        <img src="https://s1.qwant.com/thumbr/474x474/2/b/d77af1c290d20aaa0e12b8a5150b93d0e9eba985e668e2d2ec50eda84824d1/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.4-41y33sDZ1BAWEjAYQaSwHaHa%26pid%3DApi&q=0&b=1&p=0&a=0.jpg" alt="Logo" class="logo">
+        <img src="https://s1.qwant.com/thumbr/185x185/8/f/1fff6046b1e524daf03b449582d2f914ad654dba5129a107975b2bb16439b0/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.souk9VkX3bYXHRKFGQzkyAAAAA%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo" class="logo">
 
         <!-- SECTION: Titolo della pagina -->
-        <h1 class="mb-4 text-uppercase fw-bold custom-subtitle text-white">
+        <h1 class="mb-4 text-uppercase fw-bold custom-subtitle text-black">
           Registrati
         </h1>
 
-        <!-- SECTION: Form di registrazione -->
+
+
+
+          <!-- SECTION: Form di registrazione -->
         <form
           action="{{ route('register') }}"    
           method="POST"                       
@@ -28,7 +31,7 @@
 
           <!-- INPUT: Email -->
           <div class="mb-4 text-start">
-            <label for="email" class="form-label fw-semibold">Email</label>
+            <label for="email" class="form-label fw-semibold text-black">Email</label>
             <input
               type="email"
               name="email"
@@ -41,7 +44,7 @@
 
           <!-- INPUT: Nome -->
           <div class="mb-4 text-start">
-            <label for="name" class="form-label fw-semibold">Nome</label>
+            <label for="name" class="form-label fw-semibold text-black">Nome</label>
             <input
               type="text"
               name="name"
@@ -54,7 +57,7 @@
 
           <!-- INPUT: Password -->
           <div class="mb-4 text-start">
-            <label for="password" class="form-label fw-semibold">Password</label>
+            <label for="password" class="form-label fw-semibold text-black">Password</label>
             <input
               type="password"
               name="password"
@@ -68,7 +71,7 @@
 
           <!-- INPUT: Conferma Password -->
           <div class="mb-5 text-start">
-            <label for="password_confirmation" class="form-label fw-semibold">Conferma Password</label>
+            <label for="password_confirmation" class="form-label fw-semibold text-black">Conferma Password</label>
             <input
               type="password"
               name="password_confirmation"
@@ -90,8 +93,15 @@
         </form>
         <!-- END FORM -->
 
+
       </div> 
     </div> 
+
+
+     
   </div> 
+
+
+  
 
 </x-layout>

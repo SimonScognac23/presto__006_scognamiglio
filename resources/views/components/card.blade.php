@@ -1,27 +1,32 @@
 <div class="background-container d-flex justify-content-center align-items-center py-5">
+  <!-- Card principale con sfondo personalizzato, ombra e dimensioni definite -->
   <div class="card custom-card shadow">
+    <!-- Corpo della card con layout verticale e spazio distribuito -->
     <div class="card-body d-flex flex-column justify-content-between h-100">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="card-title mb-0">{{ $article->title }}</h5>
-        <p class="card-text text-white fw-semibold mb-0">€ {{ $article->price }}</p>
-        
-      </div>
-      <div class="d-flex gap-2">
 
-        {{-- Link al dettaglio dell'articolo usando la route named 'article.show', passando l'articolo come parametro --}}
+      <!-- Sezione titolo e prezzo, centrati e con margini adeguati -->
+      <div class="mb-3 text-center">
+        <!-- Titolo dell'articolo -->
+        <h5 class="card-title mb-1">{{ $article->title }}</h5>
+        <!-- Prezzo dell'articolo, posizionato sotto il titolo -->
+        <p class="card-text fw-semibold mb-0">€ {{ $article->price }}</p>
+      </div>
+
+      <!-- Sezione bottoni con distanza tra loro -->
+      <div class="d-flex gap-2">
+        <!-- Bottone per il dettaglio dell'articolo -->
         <a href="{{ route('article.show', compact('article')) }}" class="btn btn-primary">Dettaglio</a>
 
-        {{-- Controllo se l'articolo ha una categoria associata --}}
+        <!-- Controllo se l'articolo ha una categoria -->
         @if ($article->category)
-            {{-- Se l'articolo ha una categoria, crea un link che porta alla lista degli articoli filtrati per quella categoria --}}
-            <a href="{{ route('byCategory', ['category' => $article->category->id]) }}"
-               class="btn btn-outline-info">{{ $article->category->name }}</a>
+          <!-- Bottone link alla categoria, con stile outline info -->
+          <a href="{{ route('byCategory', ['category' => $article->category->id]) }}" class="btn btn-outline-info">{{ $article->category->name }}</a>
         @else
-            {{-- Se l'articolo non ha una categoria, mostra un bottone disabilitato con scritto "Nessuna categoria" --}}
-            <span class="btn btn-outline-secondary disabled">Nessuna categoria</span>
+          <!-- Bottone disabilitato se non c'è categoria -->
+          <span class="btn btn-outline-secondary disabled">Nessuna categoria</span>
         @endif
-
       </div>
+
     </div>
   </div>
 </div>

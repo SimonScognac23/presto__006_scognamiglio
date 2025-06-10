@@ -1,31 +1,28 @@
 <!-- Footer -->
-<footer class="footer-custom text-light text-center py-3 mt-0">
+<footer class="footer-custom text-center py-3 mt-0">
     <!-- Info P.IVA e proprietario -->
-    <p>P.IVA: 12345678901</p>
-    <p>Proprietario del blog: Simone Scognamiglio</p>
+    <p class="mb-1 text-gold">P.IVA: 12345678901</p>
+    <p class="mb-3 text-gold">Proprietario del blog: Simone Scognamiglio</p>
 
     <!-- Sezione Social -->
-     
-    <div>
+    <div class="d-flex justify-content-center align-items-center gap-3">
 
-        <a href="https://facebook.com" class="text-light mx-3" aria-label="Facebook">
+        <a href="https://facebook.com" class="footer-link" aria-label="Facebook" target="_blank" rel="noopener">
             <i class="bi bi-facebook fs-4"></i>
         </a>
-        <a href="https://instagram.com" class="text-light mx-3" aria-label="Instagram">
+        <a href="https://instagram.com" class="footer-link" aria-label="Instagram" target="_blank" rel="noopener">
             <i class="bi bi-instagram fs-4"></i>
         </a>
-        <a href="https://tiktok.com" class="text-light mx-3" aria-label="TikTok">
+        <a href="https://tiktok.com" class="footer-link" aria-label="TikTok" target="_blank" rel="noopener">
             <i class="bi bi-tiktok fs-4"></i>
         </a>
 
-
-    <!-- Sezione diventa revisore con la rotta become.revisor -->
-         <a href="{{ route('become.revisor') }}" class="text-light mx-3" aria-label="TikTok">
-            <i class="bi bi-tiktok fs-4">Diventa revisore</i>
+        <!-- Sezione diventa revisore con la rotta become.revisor -->
+        <a href="{{ route('become.revisor') }}" class="footer-link fw-bold" aria-label="Diventa revisore">
+            Diventa revisore
         </a>
 
     </div>
-
 </footer>
 
 

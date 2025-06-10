@@ -547,6 +547,211 @@ class MakeUserRevisor extends Command
 
                 
 
+//------------------------USER STORY 4--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 0      
+// Per permettere ai nostri utenti di navigare sul nostro sito in diverse lingue,
+// prima di tutto creiamo la possibilità di selezionare una lingua diversa.
+// Avremo bisogno nella nostra navbar di una sezione dedicata al cambio lingua.
+// Importiamo quindi nel progetto il pacchetto outhebox/blade-flags , 
+// che fornisce file svg per le bandiere del mondo
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 1
+
+// Lanciamo quindi il comando nel terminale:
+// ----------->    composer require outhebox/blade-flags   <---------------
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 2
+
+//  Una volta finiti i procedimenti di composer, pubblichiamo i file del pacchetto:
+
+// ------------->   php artisan vendor:publish --tag=blade-flags --force        <--------------------------
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 3
+
+// Da user story, ci è richiesto di avere almeno tre lingue nel nostro sito: italiano, inglese e una lingua a scelta.
+// Avremo quindi bisogno di vedere almeno tre bandiere nella navbar: per evitare ripetizioni, 
+// creeremo un componente dedicato proprio a questo scopo.
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 4
+
+//                                   COMPONENTE _LOCALE
+
+//   Andiamo quindi in ----> resources/views/components <-----
+//  e creiamo un nuovo file,------->   _locale.blade.php :   <----------
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 5  
+
+//  Richiamiamo quindi il componente in navbar.blade.php :   lang= it en es...
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//                                      LOGICA DI IMPOSTAZIONE LINGUA
+
+// 6
+
+
+//    Per gestire il cambio della lingua dovremo creare un Middleware apposito. Creiamolo:
+
+//     ----->    php artisan make:middleware SetLocaleMiddleware   <---------------
+
+//  Come sappiamo, questo comando crea un file middleware nel percorso app\Http\Middleware .
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 7  In  ----> SetLocaleMiddleware <----------- andremo a scrivere...
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 8
+//    Per fare il modo che il middleware funzioni, dovremo registrarlo. 
+//    Andiamo quindi in  ----> bootstrap/app.php  <------ e aggiungiamo
+//    all’interno della funzione di callback di withMiddleware... :
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 9                         ROTTA PER CAMBIARE LINGUA
+
+
+//   Creiamo, infine, la rotta post da associare al componente _locale :  (web.php)
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 10 E la relativa funzione in   ------>   PublicController.php :   <-------
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 11 
+
+//   Modifichiamo quindi il componente in  ------>    _locale.blade.php  <-------
+
+
+//  Aggiungiamo all’attributo action la rotta appena creata, passando 
+//  il dato che si aspetta $lang , ovvero la lingua selezionata
+//  dall’utente.
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 12
+
+//                      TRADUZIONI
+
+
+// CREARE LE TRADUZIONI
+//  In questa maniera abbiamo ultimato la logica riguardante il cambio della lingua: 
+//  dobbiamo quindi occuparci della traduzione del sito vera e
+//  propria.
+//  Per prima cosa pubblichiamo la cartella lang, tramite questo comando nel terminale:
+
+//  ---->     php artisan lang:publish      <------------
+
+
+//   La cartella lang in Laravel è il cuore della localizzazione, ovvero la traduzione dell'applicazione
+//   in diverse lingue. Generata con il
+//   comando lang:publish , ospita file di traduzione per ogni lingua supportata,
+//   organizzati per temi o componenti. Permette di
+//   personalizzare i testi e gestire dinamicamente la lingua dell'utente,
+//   offrendo un'esperienza multilingue fluida e adattiva.
+
+
+//   Di default, la cartella lang avrà la sottocartella en , relativa alla lingua inglese,
+//   contenente a sua volta diversi file che si occupano di gestirà
+//   diverse traduzioni di default, come ad esempio i messaggi di validazione che vediamo
+//   quando non li specifichiamo noi, contenuti nel file
+//   validation.php .
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//  13
+
+//  Dovremo creare, quindi, altre due sottocartelle, una per l’italiano, 
+//  l’altra per la lingua scelta dal team: nel caso del nostro esempio saranno
+//  lang/it e lang/es .
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//  14    In queste tre cartelle, en , it e es , creiamo un file: ui.php . Avremo quindi tre file:
+
+//  lang/en/ui.php
+//  lang/it/ui.php
+//  lang/es/ui.php
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//  15    Lo scopo di questi file sarà restituire un array chiave valore:
+//        la chiave sarà utilizzata per richiamare la traduzione nel sito.
+//        il valore corrisponderà alla traduzione vera e propria.
+//        Le chiavi dovranno essere le stesse per tutti e tre i file
+
+//        Ad esempio, in lang/it/ui.php avremo:  --> vedi file <-----
+//        In lang/en/ui.php avremo:    -->  vedi file <------
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//  16                UTILIZZARE LE TRADUZIONI IN BLADE
+
+//  A questo punto, ci manca solo come richiamare queste traduzioni nei file blade.
+//  Per farlo utilizzeremo questa sintassi:
+
+//   ------->   {{ __('nomeFile.nomeChiaveTraduzione') }}  <------------
+
+// 'nomeChiaveTraduzione' rappresenta la chiave della stringa da tradurre.
+//  Nel nostro caso, ad esempio:
+
+    //   <h1 class="display-1"> {{ __('ui.allArtcles') }} </h1>
+
+
+// Dovremo, quindi creare e richiamare una chiave, con relative traduzioni per ogni parte statica del sito.
+
+
+// Per tradurre le categorie, utilizzate i nomi delle categorie stesse come chiavi per le traduzioni, 
+// così da poterle richiamare dinamicamente in questa maniera:
+//   ------->  {{__("ui.$category->name")}}  <------------------
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+
+
+
+
+
+
+
 
 
 

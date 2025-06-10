@@ -9,14 +9,27 @@ use App\Http\Controllers\RevisorController;
 
 
 
-//--------------------  ROTTE PUBBLICHE-------------------------------------------------------------------------------------------------------
 
+
+
+//--------------------  ROTTE PUBBLICHE-------------------------------------------------------------------------------------------------------
 
 Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
 
 
-    ///  USER STORY 10
+
+
+///  USER STORY 10
 Route::get('/search/article', [PublicController::class, 'searchArticles'])->name('article.search');
+
+
+
+
+//    USER STORY 4
+//   cambio lingua
+Route::post('/lingua/{lang}', [PublicController::class, 'setLanguage'])->name('setLocale');
+
+
 
 
 
@@ -26,13 +39,23 @@ Route::get('/search/article', [PublicController::class, 'searchArticles'])->name
 //-----------------------------ARTICOLI-----------------------------------------------------------------------------------------------------------------  
 
 
+
+
 Route::get('/create/article', [ArticleController::class, 'create'])->name('create.article')->middleware('auth');
 
+
+
+
 Route::get('/article/index', [ArticleController::class, 'index'])->name('article.index');
+
+
 
 // Rotta parametrica (per passare il riferimento dell'articolo)
 // posso mettere o {article} oppure {id} è la stessa cosa, passerà sempre e comunque id
 Route::get('show/article/{article}', [ArticleController::class, 'show'])->name('article.show'); // Niente middleware affinché tutti gli utenti che navigano nel sito vedano la pagina
+
+
+
 
 // Rotta parametrica il cui parametro è Category
 Route::get('/category/{category}', [ArticleController::class, 'byCategory'])->name('byCategory');
@@ -40,14 +63,12 @@ Route::get('/category/{category}', [ArticleController::class, 'byCategory'])->na
 
 
 
-//-----------------------REVISORE-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//-----------------------REVISORE --- USER STORY 3-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 Route::get('/revisor/index', [RevisorController::class, 'index'])->middleware('isRevisor')->name('revisor.index');
-
-
 
 
 
@@ -61,13 +82,15 @@ Route::patch('/accept/{article}', [RevisorController::class, 'accept'])->name('a
 
 
 
-
-
 Route::patch('/reject/{article}', [RevisorController::class, 'reject'])->name('reject');
+
+
 
 
 // Rotta per diventare revisor
 Route::get('/revisor/request', [RevisorController::class, 'becomeRevisor'])->middleware('auth')->name('become.revisor');
+
+
 
 
 //Rotta make revisor

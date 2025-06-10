@@ -8,8 +8,8 @@
    con l’attributo specificato nel file CreateArticle.php.
 -->
 
-<div class="row nba-form-section mt-5">
-    <div class="col-12 col-md-8 col-lg-6 mx-auto p-4 shadow rounded bg-white">
+<div class="row nba-form-section mt-4">
+    <div class="col-12 col-md-8 col-lg-6 mx-auto p-4 shadow rounded bg-white ">
 
         <!-- Messaggio di conferma se presente nella session -->
         @if (session('message'))
@@ -26,7 +26,7 @@
 
             <!-- CAMPO TITOLO -->
             <div class="mb-3">
-                <label for="title" class="form-label fw-bold text-primary">Titolo</label>
+                <label for="title" class="form-label fw-bold text-black">Titolo</label>
                 <input 
                     wire:model.blur="title"
                     name="title" 
@@ -43,7 +43,7 @@
 
             <!-- CAMPO DESCRIZIONE -->
             <div class="mb-3">
-                <label for="description" class="form-label fw-bold text-primary">Descrizione</label>
+                <label for="description" class="form-label fw-bold text-black">Descrizione</label>
                 <textarea 
                     wire:model.blur="description"
                     name="description" 
@@ -58,7 +58,7 @@
 
             <!-- CAMPO PREZZO -->
             <div class="mb-3">
-                <label for="price" class="form-label fw-bold text-primary">Prezzo</label>
+                <label for="price" class="form-label fw-bold text-black">Prezzo</label>
                 <input 
                     wire:model.blur="price"
                     name="price" 
@@ -73,14 +73,14 @@
 
             <!-- CAMPO CATEGORIA -->
             <div class="mb-3">
-                <label for="category" class="form-label fw-bold text-primary">Categoria</label>
+                <label for="category" class="form-label fw-bold text-black">Categoria</label>
                 <select 
                     wire:model.blur="category"
                     name="category" 
                     class="form-control border-primary" 
                     id="category"
                 >
-                    <option value="" disabled selected>Seleziona una categoria</option>
+                    <option value="" disabled selected>{{ __('ui.select_category') }}</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -90,7 +90,7 @@
 
             <!-- CAMPO IMG -->
             <div class="mb-3">
-                <label for="img" class="form-label fw-bold text-primary">Inserisci un'immagine:</label>
+                <label for="img" class="form-label fw-bold text-black">{{ __('ui.insert_image') }}</label>
                 <input 
                     wire:model="img"  
                     id="img"              
@@ -113,19 +113,19 @@
             -->
             <div wire:loading wire:target="img" class="text-info mt-2">
                 <div class="spinner-border text-primary" role="status" aria-hidden="true"></div>
-                <span class="ms-2">Caricamento immagine in corso...</span>
+                <span class="ms-2">{{ __('ui.loading_image') }}</span>
+
             </div>
 
             <!-- BOTTONE INVIO -->
             <button 
                 type="submit" 
-                class="btn btn-dark text-white w-100 fw-bold"
+                class="btn btn-dark text-white w-100 fw-bold text-black"
                 wire:loading.attr="disabled"
-            >    <!-- Disabilita il bottone durante il caricamento -->
-                Invia dati
+            >   
+                {{ __('ui.submit_data') }}
             </button>
         </form>
         <!-- Fine form -->
     </div>
 </div>
- 

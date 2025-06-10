@@ -1,33 +1,31 @@
 <x-layout>
 
-  <div class="container-fluid home-bg vh-100 d-flex justify-content-center align-items-center">
-    <div class="row justify-content-center align-items-center text-center w-100">
-      <div class="col-12 col-md-6 bg-white bg-opacity-75 p-4 rounded shadow home-content">
-        <h1 class="text-center text-dark display-4 mb-4">Benvenut* nella Home</h1>
+ <div class="container-fluid home-bg vh-100 d-flex justify-content-center align-items-center">
+  <div class="row justify-content-center align-items-center text-center w-100 mt-5">
+    <div class="col-12 col-md-6 bg-white bg-opacity-75 p-4 rounded shadow home-content mt-5">
+      <h1 class="text-center display-4 mb-4 text-gold ">Benvenut* nella Home</h1>
 
+      @if (session()->has('errorMessage'))
+        <div class="alert alert-danger text-center shadow rounded w-50 mx-auto">
+           {{ session('errorMessage') }}
+        </div>          
+      @endif
 
-        @if (session()->has('errorMessage'))
-          <div class="alert alert-danger text-center shadow rounded w-50">
-             {{ session('errorMessage') }}
-          </div>          
-        @endif
+      @if (session()->has('message'))
+        <div class="alert alert-danger text-center shadow rounded w-50 mx-auto">
+           {{ session('message') }}
+        </div>          
+      @endif
 
-        
-            @if (session()->has('message'))
-          <div class="alert alert-danger text-center shadow rounded w-50">
-             {{ session('message') }}
-          </div>          
-        @endif
+      @auth
+        <a class="btn btn-primary btn-dark" href="{{ route('create.article') }}">Crea un nuovo articolo</a>
+      @endauth
 
-
-
-        @auth
-          <a class="btn btn-primary" href="{{ route('create.article') }}">Crea un nuovo articolo</a>
-        @endauth
-
-      </div>
     </div>
   </div>
+</div>
+
+
 
   <div class="container my-5">
     <div class="row justify-content-center gy-4">
