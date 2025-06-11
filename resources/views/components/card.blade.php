@@ -15,7 +15,7 @@
       <!-- Sezione bottoni con distanza tra loro -->
       <div class="d-flex gap-2">
         <!-- Bottone per il dettaglio dell'articolo -->
-        <a href="{{ route('article.show', compact('article')) }}" class="btn btn-primary">Dettaglio</a>
+        <a href="{{ route('article.show', compact('article')) }}" class="btn btn-primary">{{ __('ui.detail') }}</a>
 
         <!-- Controllo se l'articolo ha una categoria -->
         @if ($article->category)
@@ -23,7 +23,7 @@
           <a href="{{ route('byCategory', ['category' => $article->category->id]) }}" class="btn btn-outline-info">{{ $article->category->name }}</a>
         @else
           <!-- Bottone disabilitato se non c'è categoria -->
-          <span class="btn btn-outline-secondary disabled">Nessuna categoria</span>
+          <span class="btn btn-outline-secondary disabled">{{ __('ui.noCategory') }}</span>
         @endif
       </div>
 

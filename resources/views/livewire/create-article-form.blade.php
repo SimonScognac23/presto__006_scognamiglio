@@ -26,7 +26,7 @@
 
             <!-- CAMPO TITOLO -->
             <div class="mb-3">
-                <label for="title" class="form-label fw-bold text-black">Titolo</label>
+                <label for="title" class="form-label fw-bold text-black">{{ __('ui.title') }}</label>
                 <input 
                     wire:model.blur="title"
                     name="title" 
@@ -43,7 +43,7 @@
 
             <!-- CAMPO DESCRIZIONE -->
             <div class="mb-3">
-                <label for="description" class="form-label fw-bold text-black">Descrizione</label>
+                <label for="description" class="form-label fw-bold text-black">{{ __('ui.description') }}</label>
                 <textarea 
                     wire:model.blur="description"
                     name="description" 
@@ -58,7 +58,7 @@
 
             <!-- CAMPO PREZZO -->
             <div class="mb-3">
-                <label for="price" class="form-label fw-bold text-black">Prezzo</label>
+                <label for="price" class="form-label fw-bold text-black">{{ __('ui.price') }}</label>
                 <input 
                     wire:model.blur="price"
                     name="price" 
@@ -73,7 +73,7 @@
 
             <!-- CAMPO CATEGORIA -->
             <div class="mb-3">
-                <label for="category" class="form-label fw-bold text-black">Categoria</label>
+                <label for="category" class="form-label fw-bold text-black">{{ __('ui.category') }}</label>
                 <select 
                     wire:model.blur="category"
                     name="category" 

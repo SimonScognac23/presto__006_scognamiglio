@@ -10,7 +10,7 @@
         </div>    
       @empty
         <div class="col-12 text-center">
-          <h3>Non sono ancora stati creati articoli</h3>
+          <h3> {{ __('ui.noArticlesCreated') }}</h3>
         </div>
       @endforelse
 

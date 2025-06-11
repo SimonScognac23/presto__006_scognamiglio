@@ -9,6 +9,10 @@
 
     <title>Presto</title>
 
+        <!--Swiper JS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!--Lo slash alla fine serve se noi vogliamo utilizzare la CDN sui framework tipo react -->
+
     {{-- Bootstrap Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
@@ -26,6 +30,11 @@
     {{-- Footer --}}
     <x-footer />
 
+        <!-- Swiper js-->
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+ <!--Font awesome-->
+            <script src="https://kit.fontawesome.com/e68b4c7621.js"></script>
 
 
 

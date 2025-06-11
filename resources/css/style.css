@@ -132,6 +132,28 @@
     color: var(--color-gold) !important;
 }
 
+:root {
+    --color-gold: #ffd700;
+}
+
+.title-gold {
+    color: var(--color-gold);
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    /* equivalente a Bootstrap mt-5 */
+    margin-bottom: 1.5rem;
+    /* equivalente a Bootstrap mb-4 */
+    text-align: center;
+}
+
+.img-small-title {
+    width: 100px;
+    /* dimensione immagine */
+    height: auto;
+    object-fit: contain;
+}
+
 
 .home-content {
     max-width: 350px;
@@ -438,4 +460,165 @@ h1.display-4 {
         flex-direction: column;
         gap: 1rem;
     }
+}
+
+
+
+/*--------------------------------------------SHOW.BLADE.PHP------------------------------------------------------------------------------------------------------------*/
+
+/* carousel-style.css */
+
+/* Contenitore principale del carosello */
+.carousel-container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--color-dark-bg), var(--color-black));
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+/* Styling per l'interno del carosello */
+.carousel-inner-custom {
+    border: 1px solid var(--color-white-smoke);
+    box-shadow: 0 0 20px var(--color-gold-shadow);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Contenuto del singolo item */
+.carousel-item-content {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Testo all'interno del carosello */
+.carousel-text {
+    color: var(--color-white-smoke);
+    text-align: center;
+}
+
+.carousel-text h5 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+}
+
+.carousel-text p {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.carousel-text .price {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-gold);
+    /* oro */
+}
+
+/* Immagine dell'articolo */
+.carousel-img {
+    margin-top: 1.5rem;
+    max-height: 400px;
+    object-fit: cover;
+    border: 2px solid var(--color-white-smoke);
+    border-radius: 0.5rem;
+}
+
+
+
+
+
+
+
+
+:root {
+    --color-gold: #ffd700;
+    --color-gold-shadow: rgba(255, 215, 0, 0.3);
+    --color-black: #000000;
+    --color-white-smoke: #f5f5f5;
+    --color-dark-gray: #333;
+    --color-dark-bg: #121212;
+}
+
+/* Contenitore principale */
+body {
+    background: linear-gradient(to bottom, var(--color-dark-bg), var(--color-black));
+    color: var(--color-white-smoke);
+}
+
+/* Header */
+.revisor-header {
+    background-color: var(--color-dark-gray);
+    color: var(--color-white-smoke);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 15px var(--color-gold-shadow);
+}
+
+/* Alert messaggio */
+.alert-success {
+    background-color: var(--color-gold-shadow);
+    color: var(--color-white-smoke);
+    border: 1px solid var(--color-gold);
+}
+
+/* Immagine articolo */
+.article-img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border: 2px solid var(--color-white-smoke);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px var(--color-gold-shadow);
+}
+
+/* Dettagli articolo */
+.article-details h2,
+.article-details h3,
+.article-details h4,
+.article-details p {
+    color: var(--color-white-smoke);
+}
+
+.article-details h3.text-danger,
+.article-details h4.text-danger {
+    color: var(--color-gold);
+}
+
+/* Bottoni */
+.btn-success,
+.btn-danger {
+    font-weight: bold;
+    padding: 0.6rem 2rem;
+    border-radius: 0.4rem;
+    transition: background-color 0.3s;
+}
+
+.btn-success {
+    background-color: var(--color-gold);
+    border: none;
+    color: var(--color-black);
+}
+
+.btn-success:hover {
+    background-color: var(--color-white-smoke);
+    color: var(--color-black);
+}
+
+.btn-danger {
+    background-color: var(--color-dark-gray);
+    border: 1px solid var(--color-gold);
+    color: var(--color-gold);
+}
+
+.btn-danger:hover {
+    background-color: var(--color-gold);
+    color: var(--color-black);
+}
+
+/* Nessun articolo */
+.height-custom {
+    min-height: 60vh;
 }

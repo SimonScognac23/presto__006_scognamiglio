@@ -1,117 +1,100 @@
 <x-layout>
-    <div class="container-fluid pt-5">
+    <div class="container my-5">
 
         {{-- HEADER --}}
         <div class="row">
-            <div class="col-12 pt-5">
-                <div class="rounded shadow bg-body-secondary">
-                    <h3 class="display5 text-center p-2">
-                        Revisore dashboard
-                    </h3>
+            <div class="col-12">
+                <div class="bg-dark text-white text-center py-3 rounded shadow">
+                    <h3 class="display-5 m-0">{{ __('ui.revisor_dashboard') }}</h3>
                 </div>
             </div>
         </div>
 
-        {{-- MESSAGGIO DI CONFERMA (ACCETTAZIONE O RIFIUTO ARTICOLO) --}}
+        {{-- MESSAGGIO DI CONFERMA --}}
         @if(session()->has('message'))
-            <div class="row justify-content-center">
-                <div class="col-5 alert alert-success text-center shadow rounded">
-                    {{ session('message') }}
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-6">
+                    <div class="alert alert-success text-center shadow rounded">
+                        {{ session('message') }}
+                    </div>
                 </div>
             </div>
         @endif
 
-        {{-- CONTROLLO SE C'È UN ARTICOLO DA REVISIONARE --}}
+        {{-- CONTROLLO SE C'È UN ARTICOLO --}}
         @if($article_to_check)
 
-            {{-- BLOCCO GRAFICO DI RIEMPIMENTO (per future funzionalità, tipo tag, analisi immagini ecc.) --}}
-            <div class="row justify-content-center pt-5">
-                <div class="col-12 col-md-8">
-                    <div class="row justify-content-center">
-                        @for ($i = 0; $i < 6; $i++)
-                            <div class="col-12 col-md-4 text-center">
-                                <div class="col-md-4 ps-4 d-flex flex-column justify-content-between">
-                                    {{-- Spazio per funzionalità future: ad esempio visualizzare tags, flag, keyword, ecc. --}}
-                                </div>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-            </div>
+      
 
-            {{-- SEZIONE IMMAGINE ARTICOLO --}}
-            <div class="text-center my-4">
-                @if($article_to_check->img)
-                    {{-- 
-                        - Controlliamo se l'articolo ha un'immagine collegata tramite la proprietà "img".
-                        - Se sì, la stampiamo usando l'helper asset() concatenato con il path in 'storage'.
-                        - L'immagine è responsiva grazie alla classe Bootstrap "img-fluid".
-                        - "rounded" per gli angoli arrotondati.
-                        - "shadow" per aggiungere un'ombra.
-                        - Alt viene impostato con il titolo dell’articolo per accessibilità.
-                    --}}
+
+            {{-- IMMAGINE ARTICOLO --}}
+            @if($article_to_check->img)
+                <div class="text-center my-4">
                     <img 
                         src="{{ asset('storage/' . $article_to_check->img) }}" 
                         class="img-fluid rounded shadow" 
                         alt="{{ $article_to_check->title }}">
-                @endif
-            </div>
+                </div>
+            @endif
 
-            {{-- DETTAGLI ARTICOLO --}}
-            <div>
-                {{-- Titolo --}}
-                <h2>{{ $article_to_check->title }}</h2>
+     {{-- DETTAGLI ARTICOLO --}}
+<div class="bg-dark p-4 rounded shadow text-white">
+    <h2 class="mb-3">{{ $article_to_check->title }}</h2>
 
-                {{-- Autore (se presente) --}}
-                @if($article_to_check->user)
-                    <h3>{{ 'Autore: ' . $article_to_check->user->name }}</h3>
-                @else
-                    <h3 class="text-danger">Autore non disponibile</h3>
-                @endif
+    {{-- Autore --}}
+    @if($article_to_check->user)
+        <h4 class="text-light mb-2">Autore: {{ $article_to_check->user->name }}</h4>
+    @else
+        <h4 class="text-danger mb-2">Autore non disponibile</h4>
+    @endif
 
-                {{-- Categoria (se presente) --}}
-                @if($article_to_check->category)
-                    <h4 class="fst-italic text-muted">Categoria: {{ $article_to_check->category->name }}</h4>
-                @else
-                    <h4 class="fst-italic text-muted text-danger">Categoria non disponibile</h4>
-                @endif
+    {{-- Categoria --}}
+    @if($article_to_check->category)
+        <h5 class="fst-italic text-info mb-3">Categoria: {{ $article_to_check->category->name }}</h5>
+    @else
+        <h5 class="fst-italic text-danger mb-3">{{ __('ui.noCategory') }}</h5>
+    @endif
 
-                {{-- Data creazione articolo --}}
-                <p class="fst-italic text-muted">{{ $article_to_check->created_at }}</p>
+    {{-- Data --}}
+    <p class="text-secondary fst-italic mb-4">Creato il: {{ $article_to_check->created_at->format('d/m/Y H:i') }}</p>
 
-                {{-- Descrizione articolo --}}
-                <p>{{ $article_to_check->description }}</p>
-            </div>
+    {{-- Descrizione --}}
+    <p class="lh-lg">{{ $article_to_check->description }}</p>
 
-            {{-- BOTTONI DI AZIONE (ACCETTA / RIFIUTA) --}}
-            <div class="d-flex justify-content-around my-4">
-                {{-- FORM PER RIFIUTARE ARTICOLO --}}
+    {{-- Altri dettagli opzionali --}}
+    @if($article_to_check->updated_at && $article_to_check->updated_at != $article_to_check->created_at)
+        <p class="text-secondary fst-italic mt-3">Ultima modifica: {{ $article_to_check->updated_at->format('d/m/Y H:i') }}</p>
+    @endif
+</div>
+
+            {{-- BOTTONI AZIONE --}}
+            <div class="d-flex justify-content-between my-4">
                 <form action="{{ route('reject', ['article' => $article_to_check]) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <button class="btn btn-danger px-2 fs-6 fw-bold">Rifiuta</button>
+                    <button class="btn btn-outline-danger px-4 fw-bold">{{ __('ui.reject') }}</button>
                 </form>
 
-                {{-- FORM PER ACCETTARE ARTICOLO --}}
                 <form action="{{ route('accept', ['article' => $article_to_check]) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <button class="btn btn-success py-2 px-5 fw-bold">Accetta</button>
+                    <button class="btn btn-outline-success px-4 fw-bold">{{ __('ui.accept') }}</button>
                 </form>
             </div>
 
         @else
-            {{-- NESSUN ARTICOLO DA REVISIONARE --}}
-            <div class="row justify-content-center align-items-center height-custom text-center">
-                <div class="col-12">
-                    <h3 class="fst-italic display-4">
-                        Nessun articolo da revisionare
+            {{-- NESSUN ARTICOLO --}}
+            <div class="row justify-content-center align-items-center text-center" style="min-height: 300px;">
+                <div class="col-md-8">
+                    <h3 class="display-6 fst-italic mb-4">
+                             {{ __('ui.no_articles_to_review') }}
                     </h3>
                     <a href="{{ route('homepage') }}" class="btn btn-success">
-                        Torna alla homepage
+                     Back to Homepage
                     </a>
                 </div>
             </div>
         @endif
+
     </div>
 </x-layout>

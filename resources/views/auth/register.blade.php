@@ -44,7 +44,7 @@
 
           <!-- INPUT: Nome -->
           <div class="mb-4 text-start">
-            <label for="name" class="form-label fw-semibold text-black">Nome</label>
+            <label for="name" class="form-label fw-semibold text-black">{{ __('ui.name') }}</label>
             <input
               type="text"
               name="name"
@@ -71,7 +71,7 @@
 
           <!-- INPUT: Conferma Password -->
           <div class="mb-5 text-start">
-            <label for="password_confirmation" class="form-label fw-semibold text-black">Conferma Password</label>
+            <label for="password_confirmation" class="form-label fw-semibold text-black">{{ __('ui.confirm_password') }}</label>
             <input
               type="password"
               name="password_confirmation"
@@ -86,7 +86,7 @@
           <!-- SECTION: Bottone di invio -->
           <div class="d-grid">
             <button type="submit" class="btn btn-lg fw-semibold shadow btn-black-text">
-              Registrati
+             {{ __('ui.register') }}
             </button>
           </div>
 
