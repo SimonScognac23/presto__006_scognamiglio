@@ -14,7 +14,7 @@
           <!-- CAMPO EMAIL -->
           <div class="mb-3 text-start">
             <label for="email" class="form-label label-psycho text-black">Email</label>
-            <input type="email" name="email" class="form-control input-psycho" id="email" placeholder="Inserisci la tua email" required>
+            <input type="email" name="email" class="form-control input-psycho" id="email"  placeholder="{{ __('ui.email_placeholder') }}" required>
           </div>
 
 

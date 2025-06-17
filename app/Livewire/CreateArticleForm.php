@@ -49,6 +49,12 @@ class CreateArticleForm extends Component
 public $img;
 
 
+public $images =[]; // USER STORY 5
+public $temporary_images; // USER STORY 5
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
      // Nella funzione store richiamiamo il metodo validate per verificare che le regole che abbiamo settato siano rispettate prima di proseguire
      public function store()
 {
@@ -86,7 +92,14 @@ public $img;
 
     ]);
 
-dd($article);
+
+    // -----------USER STORY 5 PUNTO 12------------------
+if (count($this->images) > 0) {
+    foreach ($this->images as $image) {
+        $article->images()->create(['path' => $image->store('img', 'public')]);
+    }
+}
+  // ------------------FINE USER STORY 5 PUNTO 12 ------------------
 
     // Reset del form
     $this->clearForm();
@@ -113,4 +126,138 @@ dd($article);
     {
         return view('livewire.create-article-form');
     }
+
+
+// USER STORY 5 PUNTO 12
+//  A riga 97-100, una volta creato l’articolo, se l’utente ha inserito delle immagini,
+//  per ognuna di queste creiamo, tramite la funzione di
+// relazione con article ( $this->article->images() ), un oggetto di classe Image:
+//  *   il file sarà salvato nello storage, nel percorso storage/app/public/images
+//  *   il percorso dell’immagine sarà salvato nella tabella images del database
+
+
+
+//---------------------USER STORY 5 PUNTO 9 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+public function updatedTemporaryImages()
+
+{
+    
+    if ($this->validate([
+
+        'temporary_images.*' => 'image|max:1024',
+         'temporary_images.' => 'max:6'
+    ])) {
+        foreach ($this->temporary_images as $image) {
+            $this->images[] = $image;
+
+        }
+    }
+
+
+}
+
+//  Cosa stiamo facendo:
+
+
+
+// 1 Abbiamo creato un metodo chiamato updatedTemporaryImages() . Il nome non è casuale: updated + nome attributo è una sintassi
+// specifica di livewire, utilizzata per monitorare e aggiornare in tempo reale i cambiamenti della proprietà richiamata nel nome del metodo 
+// stesso (nel nostro caso $temporary_images )
+
+
+
+
+
+// 2 updated è un hook in livewire:
+// * In generale, un hook è un punto di accesso predefinito all'interno di un framework o di una libreria che consente agli sviluppatori di
+//   intercettare e modificare il comportamento del software in momenti specifici del ciclo di vita di un componente.
+
+// * updated viene chiamato quando una proprietà pubblica di un componente viene modificata sul client. Questo hook fornisce
+// un punto di accesso per reagire alle modifiche delle proprietà prima che il componente venga aggiornato sul server.
+
+
+
+
+
+
+// 3 --  Riga 131: Iniziamo con un controllo: se le regole di validazione sono rispettate, allora salviamo ognuna delle immagini temporanee
+// all’interno dell’array $images.
+
+// 'temporary_images.*' - setterà le regole di validazione per ogni immagine presente nell’array, quindi ogni immagine deve
+//  pesare massimo 1024
+
+
+//  ‘temporary_images' - setta le regole per tutto l’array, quindi possono essere inserite massimo 6 immagini
+//  Per questo motivo nella pagina blade abbiamo inserito due direttive @error  ---->create-article-form.blade.php<----
+
+
+
+
+
+
+// 4 
+// Lo stiamo facendo tramite la cosìdetta sugar syntax $this->images[] = $image .
+// images è il nome dell’array che stiamo modificando
+// [] indica, appunto, che stiamo lavorando con un array
+// = è l’operatore di assegnazione, stiamo specificando che vogliamo dare l’elemento che segue l’uguale come valore all’elemento dell’array
+// $image è l’elemento che vogliamo salvare nell’array
+
+// Il corrispettivo di questo codice in sintassi standard sarebbe: array_push($this->images, $image) .
+// Questo array sarà responsabile della visualizzazione delle immagini in preview.
+
+
+
+
+
+
+
+//-----------------------------------------FINE USER STORY 5 PUNTO 9---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+//---------------------USER STORY 5 PUNTO 10 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+public function removeImage($key)
+{
+
+    if(in_array($key, array_keys($this->images))) {
+        unset($this->images[$key]);
+    }
+}
+
+
+//  il metodo removeImage() accetta in ingresso un parametro, $key
+//  al suo interno facciamo un controllo: se l’immagine selezionata è presente nell’array $images viene eliminata dall’array (e quindi non
+//  sarà né visualizzata né salvata.
+
+//  Per fare ciò stiamo utilizzando diverse funzioni ----> built-in di PHP: <------------
+//  in_array() verifica se un dato (il primo parametro) è presente all’interno di un array (secondo parametro) 
+//  array_keys() : restituisce tutte le chiavi o indici dell’array passato come parametro 
+//  unset() : elimina dati elementi dall’interno di un array
+
+
+// Una volta creata la funzione, diamo la possibilità all’utente di utilizzarla.
+// Modifichiamo dunque il form di creazione in  ----> create-article-form.blade.php <----
+
+
+
+
+
+
+
+
+//----------------------------------FINE USER STORY 5 PUNTO 10----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 }

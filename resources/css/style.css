@@ -21,8 +21,13 @@
     font-family: Arial, sans-serif !important;
 }
 
+
+
+
+
 /*-------------------- NAVBAR (Navbar personalizzata) --------------------------------------------------*/
 
+/* Stile principale della navbar con sfondo a gradiente e bordo dorato */
 .navbar-custom {
     background: linear-gradient(90deg,
             var(--color-black) 0%,
@@ -31,6 +36,7 @@
     box-shadow: 0 0 10px var(--color-gold-shadow);
 }
 
+/* Colore e transizioni per brand, link, dropdown toggle e dropdown item */
 .navbar-custom .navbar-brand,
 .navbar-custom .nav-link,
 .navbar-custom .dropdown-toggle,
@@ -39,67 +45,87 @@
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
+/* Effetto hover su link e dropdown item: cambio colore e leggero ingrandimento */
 .navbar-custom .nav-link:hover,
 .navbar-custom .dropdown-item:hover {
     color: var(--color-gold);
     transform: scale(1.05);
 }
 
+/* Icona del toggler della navbar personalizzata con SVG color oro */
 .navbar-custom .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFD700' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 215, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+/* Sfondo e bordo del menu a tendina dropdown */
 .navbar-custom .dropdown-menu {
     background-color: var(--color-dark-bg);
     border: 1px solid var(--color-gold);
 }
 
+/* Colore dei singoli elementi dropdown */
 .navbar-custom .dropdown-item {
     color: var(--color-gold);
 }
 
+/* Linea divisoria del dropdown con colore grigio scuro */
 .navbar-custom .dropdown-divider {
     border-top: 1px solid var(--color-dark-gray);
 }
 
+/* Stile input di ricerca: sfondo nero, bordo e testo color oro */
 .navbar-custom input[type="search"] {
     background-color: var(--color-black);
     border: 1px solid var(--color-gold);
     color: var(--color-gold);
 }
 
+/* Colore placeholder testo input di ricerca */
 .navbar-custom input[type="search"]::placeholder {
     color: var(--color-gray-light);
 }
 
+/* Bottone outline success con colori oro */
 .navbar-custom .btn-outline-success {
     color: var(--color-gold);
     border-color: var(--color-gold);
 }
 
+/* Bottone outline success al passaggio del mouse: sfondo oro e testo nero */
 .navbar-custom .btn-outline-success:hover {
     background-color: var(--color-gold);
     color: var(--color-black);
 }
 
+
+
+
+
+
+
+
 /*-------------------- REGISTER.BLADE.PHP (Pagina di Registrazione) ---------------------------------------*/
 
+/* Classe per sfondo che copre completamente l'area, centrato e senza ripetizioni */
 .register-bg {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
+/* Stile per sottotitoli personalizzati: dimensione del font, peso e ombra testo */
 .custom-subtitle {
     font-size: 1.8rem;
     font-weight: 700;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
+/* Classe per testo con colore nero forzato tramite !important */
 .btn-black-text {
     color: var(--color-black) !important;
 }
 
+/* Posizionamento assoluto del logo in basso a destra con trasformazione verticale e altezza massima */
 .logo {
     position: absolute;
     top: 85%;
@@ -108,6 +134,8 @@
     max-height: 50px;
 }
 
+/* Media query per schermi piccoli (max 576px) */
+/* Riduce la dimensione del sottotitolo e aumenta il padding del form con !important */
 @media (max-width: 576px) {
     .custom-subtitle {
         font-size: 1.4rem;
@@ -118,8 +146,18 @@
     }
 }
 
+
+
+
+
+
+
+
+
 /*-------------------- WELCOME.BLADE.PHP (Pagina di Benvenuto) -------------------------------------------*/
 
+/* Sfondo pagina home con immagine a piena copertura, centrata e senza ripetizione */
+/* Altezza minima pari all'altezza della finestra (viewport) */
 .home-bg {
     background-image: url('https://c.wallhere.com/photos/85/22/warhammer_40000_shooting_warrior_equipment-728114.jpg!d');
     background-size: cover;
@@ -128,33 +166,39 @@
     min-height: 100vh;
 }
 
+/* Classe per testo color oro con importanza forzata */
 .text-gold {
     color: var(--color-gold) !important;
 }
 
+/* Definizione della variabile CSS per il colore oro usato nel sito */
 :root {
     --color-gold: #ffd700;
 }
 
+/* Titolo con colore oro, peso grassetto, dimensione e margini */
+/* I margini sono equivalenti alle classi Bootstrap mt-5 e mb-4 */
+/* Testo centrato */
 .title-gold {
     color: var(--color-gold);
     font-weight: bold;
     font-size: 1.5rem;
     margin-top: 3rem;
-    /* equivalente a Bootstrap mt-5 */
     margin-bottom: 1.5rem;
-    /* equivalente a Bootstrap mb-4 */
     text-align: center;
 }
 
+/* Immagine piccola per il titolo, dimensione fissata a 100px di larghezza, altezza proporzionata */
+/* Oggetto adattato senza deformazioni */
 .img-small-title {
     width: 100px;
-    /* dimensione immagine */
     height: auto;
     object-fit: contain;
 }
 
-
+/* Contenuto home con larghezza massima, padding e sfondo nero con gradienti sovrapposti */
+/* Colore testo bianco fumo, angoli arrotondati, ombra esterna */
+/* Font responsive con clamp che varia da 1rem a 1.2rem in base alla larghezza viewport */
 .home-content {
     max-width: 350px;
     padding: 1rem;
@@ -174,11 +218,10 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 
     font-size: clamp(1rem, 2vw, 1.2rem);
-    /* font responsivo */
 }
 
-
-
+/* Media query per schermi piccoli (max 576px) */
+/* Aumenta padding e aumenta dimensione del titolo h1 all'interno di home-content */
 @media (max-width: 576px) {
     .home-content {
         padding: 2rem 1.5rem;
@@ -189,22 +232,40 @@
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 /*-------------------- FOOTER.BLADE.PHP (Footer personalizzato) ----------------------------------------*/
 
+/* Stile personalizzato per il footer: colore di sfondo e colore testo */
 .footer-custom {
     background-color: var(--color-footer-bg);
     color: var(--color-footer-text);
 }
 
+/* Colore dei link nel footer e transizione fluida per il cambio colore */
 .footer-custom a {
     color: var(--color-footer-text);
     transition: color 0.3s ease;
 }
 
+/* Cambia colore dei link al passaggio del mouse (hover) */
 .footer-custom a:hover {
     color: var(--color-footer-hover);
 }
 
+/* Media query per schermi piccoli (max 576px) */
+/* Aggiunge padding ridotto e dimensione testo più piccola nel footer */
+/* Ingrandisce le icone (elementi <i>) per migliorare visibilità su mobile */
 @media (max-width: 576px) {
     .footer-custom {
         padding: 1.5rem 1rem;
@@ -216,8 +277,19 @@
     }
 }
 
+
+
+
+
+
+
 /*-------------------- LOGIN.BLADE.PHP (Pagina di Login) ----------------------------------------------*/
 
+/* Contenitore principale login con immagine di sfondo */
+/* Immagine a copertura totale, centrata, fissata durante lo scroll */
+/* Altezza minima uguale all'altezza della finestra */
+/* Nessun margine esterno */
+/* Flexbox per centrare orizzontalmente e verticalmente il contenuto */
 .login-mg {
     background-image: url('https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/12/warhammer_40k_space_marine_2_captian_titus.jpg?q=50&fit=crop&w=1140&h=&dpr=1.5');
     background-size: cover;
@@ -230,6 +302,9 @@
     align-items: center;
 }
 
+/* Stile form con larghezza massima al 100%, centrato con margine automatico */
+/* Padding interno generoso e ombra leggera */
+/* Sfondo con colore bianco fumoso */
 .form-psycho {
     max-width: 100%;
     margin: 0 auto;
@@ -238,22 +313,27 @@
     background-color: var(--color-white-smoke);
 }
 
+/* Stile campi input: sfondo personalizzato, bordo grigio chiaro, angoli arrotondati */
 .input-psycho {
     background-color: var(--color-input-bg);
     border: 1px solid #ccc;
     border-radius: 8px;
 }
 
+/* Focus sugli input: cambia colore bordo e aggiunge effetto ombra azzurra */
 .input-psycho:focus {
     border-color: var(--color-input-border-focus);
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+/* Stile etichette input: peso semi-grassetto e colore grigio scuro */
 .label-psycho {
     font-weight: 600;
     color: var(--color-dark-gray);
 }
 
+/* Stile pulsante principale: colore sfondo e testo personalizzati, angoli molto arrotondati */
+/* Transizione fluida per il cambio colore al passaggio del mouse */
 .btn-psycho {
     background-color: var(--color-btn-primary-bg);
     color: var(--color-footer-text);
@@ -261,16 +341,22 @@
     transition: background-color 0.3s ease;
 }
 
+/* Cambio colore sfondo pulsante al passaggio del mouse */
 .btn-psycho:hover {
     background-color: var(--color-btn-primary-bg-hover);
 }
 
+/* Media query per dispositivi con larghezza almeno 768px */
+/* Limita la larghezza massima del form a 500px */
 @media (min-width: 768px) {
     .form-psycho {
         max-width: 500px;
     }
 }
 
+/* Media query per dispositivi piccoli con larghezza max 576px */
+/* Riduce il padding del form */
+/* Per la classe login-bg cambia comportamento sfondo da fixed a scroll */
 @media (max-width: 576px) {
     .form-psycho {
         padding: 1.5rem;
@@ -281,31 +367,41 @@
     }
 }
 
+/* Margine inferiore per il testo con classe mission-text */
 .mission-text {
     margin-bottom: 20px;
 }
 
+
+
+
+
+
 /*-------------------- CREATE.BLADE.PHP (Pagina di Creazione) -----------------------------------------*/
 
-
+/* Sfondo nero con immagine di sfondo che non si ripete, copre tutta l'area */
+/* L'immagine è centrata */
 .bg-whisper {
     background-color: var(--color-black);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
 }
 
+/* Testo con colore nero e stile corsivo forzato con !important */
 .text-black {
     color: var(--color-black);
     font-style: italic !important;
 }
 
-
+/* Altezza minima pari a tutta l'altezza della finestra */
 .height-custom {
     min-height: 100vh;
 }
 
+/* Contenitore per Livewire */
+/* Sfondo con colore definito per il footer, padding generoso, angoli arrotondati */
+/* Ombra leggera per dare profondità */
 .livewire-container {
     background-color: var(--color-footer-text);
     padding: 2rem;
@@ -313,6 +409,8 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Titolo principale con font molto pesante e dimensione grande */
+/* Colore testo nero */
 h1.display-4 {
     font-weight: 700;
     font-size: 3rem;
@@ -323,10 +421,15 @@ h1.display-4 {
 
 
 
-/*-------------------- CARD.BLADE.PHP (Pagina di Creazione) -----------------------------------------*/
 
+
+
+/*-------------------- CARD.BLADE.PHP (Pagina di Creazione) -----------------------------------------*/
+/* Contenitore con immagine di sfondo */
+/* L'immagine copre tutto lo spazio, centrata, senza ripetizioni */
+/* Altezza 50% dell'altezza viewport, padding verticale */
 .background-container {
-    background-image: url('https://s2.qwant.com/thumbr/474x294/6/0/4ffceb78cc9418095093adc32a1c4edb8ba25bd798c5431220b544cac0cbc9/OIP.5FDR9BmQ-lMHV3WiR6-WKwAAAA.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%2Fid%2FOIP.5FDR9BmQ-lMHV3WiR6-WKwAAAA%3Fr%3D0%26pid%3DApi&q=0&b=1&p=0&a=0');
+    background-image: url('https://s2.qwant.com/thumbr/…jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -335,26 +438,65 @@ h1.display-4 {
     padding-bottom: 2rem;
 }
 
+/* Card personalizzata */
+/* Larghezza massima 350px, sfondo nero con gradienti sovrapposti per effetto ombra e luce */
+/* Colore testo chiaro, angoli arrotondati e ombra esterna dorata */
+/* Padding interno e font dimensionabile con clamp */
+/* Posizione relativa per elementi assoluti figli, overflow nascosto */
+/* Transizione animata per trasformazioni e ombre */
 .custom-card {
     max-width: 350px;
     background-color: var(--color-black);
     background-image:
-        radial-gradient(ellipse at center,
-            rgba(255, 255, 255, 0.08) 0%,
-            transparent 60%),
+        radial-gradient(ellipse at center, var(--color-gold-shadow) 0%, transparent 60%),
         linear-gradient(135deg,
-            var(--color-black) 0%,
-            var(--color-black) 40%,
-            rgba(255, 255, 255, 0.08) 50%,
-            var(--color-black) 90%,
+            var(--color-black) 30%,
+            var(--color-gold-shadow) 50%,
             var(--color-black) 100%);
     color: var(--color-white-smoke);
     border-radius: 0.375rem;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 15px var(--color-gold-shadow);
     padding: 1rem;
     font-size: clamp(1rem, 2vw, 1.2rem);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Pseudo-elemento per bordo animato neon */
+/* Posizione assoluta estesa di 2px oltre i bordi della card */
+/* Gradient animato in loop per effetto neon */
+.custom-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    background: linear-gradient(45deg, var(--color-btn-primary-bg), var(--color-gold));
+    background-size: 400% 400%;
+    animation: neon 4s ease infinite;
+    z-index: -1;
+}
+
+/* Animazione neon: sfondo si muove da sinistra a destra e ritorno */
+@keyframes neon {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Corpo della card con layout flex verticale e spaziatura tra gli elementi */
+/* Altezza al 100% della card */
 .custom-card .card-body {
     display: flex;
     flex-direction: column;
@@ -362,10 +504,62 @@ h1.display-4 {
     height: 100%;
 }
 
-.custom-card .d-flex.justify-content-between {
+/* Badge categoria posizionato in alto a destra */
+/* Sfondo dorato, testo nero, piccolo, arrotondato e con padding */
+.custom-card .badge-category {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background-color: var(--color-gold);
+    color: var(--color-black);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+/* Wrapper immagine con rapporto 4:3 (padding-top 75%) */
+/* Posizione relativa per immagine assoluta, overflow nascosto e angoli arrotondati */
+/* Margine inferiore per distanziare dal contenuto */
+.custom-card .img-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 75%;
+    overflow: hidden;
+    border-radius: 0.375rem;
     margin-bottom: 1rem;
 }
 
+/* Immagine assoluta dentro il wrapper */
+/* Copre tutto lo spazio, mantiene proporzioni con object-fit cover */
+/* Transizione per effetto hover */
+.custom-card .img-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Overlay scuro semitrasparente sull'immagine al passaggio del mouse */
+.custom-card .img-wrapper:hover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Zoom leggero immagine al passaggio del mouse */
+.custom-card .img-wrapper:hover img {
+    transform: scale(1.1);
+}
+
+/* Titolo della card: dimensione media, peso semi-grassetto, colore chiaro, margine inferiore nullo */
 .custom-card .card-title {
     font-size: 1.3rem;
     font-weight: 600;
@@ -373,47 +567,74 @@ h1.display-4 {
     margin-bottom: 0;
 }
 
+/* Testo della card: peso semi-grassetto, colore chiaro, margine inferiore nullo */
 .custom-card .card-text {
     font-weight: 600;
     color: var(--color-white-smoke);
     margin-bottom: 0;
 }
 
+/* Gruppo di bottoni e div con flex, gap e margin-top automatico per spingere in basso */
+.custom-card .btn-group,
+.custom-card .d-flex.gap-2 {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Bottone primario con gradient lineare animato */
+/* Nessun bordo, testo chiaro, transizione su posizione sfondo e colore */
 .custom-card .btn-primary {
-    background-color: var(--color-black);
-    border: 1px solid var(--color-white-smoke);
+    background: linear-gradient(135deg, var(--color-btn-primary-bg), var(--color-btn-primary-bg-hover));
+    border: none;
     color: var(--color-white-smoke);
-    transition: background-color 0.3s ease;
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    transition: background-position 0.5s ease, color 0.3s ease;
 }
 
+/* Bottone primario al passaggio del mouse: spostamento sfondo e colore mantenuto */
 .custom-card .btn-primary:hover {
-    background-color: var(--color-white-smoke);
-    color: var(--color-black);
-    border-color: var(--color-black);
+    background-position: 100% 50%;
+    color: var(--color-white-smoke);
 }
 
+/* Bottone outline info: colore e bordo personalizzati */
+/* Transizione su colore e sfondo */
 .custom-card .btn-outline-info {
-    color: #0dcaf0;
-    border-color: #0dcaf0;
+    color: var(--color-btn-primary-bg);
+    border-color: var(--color-btn-primary-bg);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Bottone outline info hover: sfondo colorato e testo nero */
 .custom-card .btn-outline-info:hover {
-    background-color: #0dcaf0;
+    background-color: var(--color-btn-primary-bg);
     color: var(--color-black);
 }
 
+/* Bottone outline secondary disabilitato */
+/* Colori più chiari, nessuna interazione */
 .custom-card .btn-outline-secondary.disabled {
-    color: #6c757d;
-    border-color: #6c757d;
+    color: var(--color-gray-light);
+    border-color: var(--color-gray-light);
     pointer-events: none;
     cursor: default;
 }
 
 
 
+
+
+
+
 /*-------------------- FOOTER  -----------------------------------------*/
 
-
+/* Footer con sfondo gradiente orizzontale da nero a bianco quasi trasparente */
+/* Bordo superiore dorato spesso 2px */
+/* Ombra esterna verso l'alto con colore oro sfumato */
+/* Testo dorato con peso medio */
 .footer-custom {
     background: linear-gradient(90deg,
             var(--color-black) 0%,
@@ -424,17 +645,26 @@ h1.display-4 {
     font-weight: 500;
 }
 
+/* Paragrafi nel footer con margine inferiore ridotto */
+/* Colore testo dorato per coerenza */
 .footer-custom p {
     margin-bottom: 0.5rem;
     color: var(--color-gold);
 }
 
+/* Link nel footer */
+/* Colore oro, transizione dolce su colore e trasformazioni */
+/* Nessuna sottolineatura */
 .footer-custom .footer-link {
     color: var(--color-gold);
     transition: color 0.3s ease, transform 0.3s ease;
     text-decoration: none;
 }
 
+/* Hover e focus sui link del footer */
+/* Cambia colore al colore hover definito */
+/* Scala leggermente ingrandendo */
+/* Nessuna sottolineatura */
 .footer-custom .footer-link:hover,
 .footer-custom .footer-link:focus {
     color: var(--color-footer-hover);
@@ -442,19 +672,23 @@ h1.display-4 {
     text-decoration: none;
 }
 
-/* Icone social */
+/* Icone social nel footer */
+/* Allineamento verticale al centro rispetto al testo */
 .footer-custom i {
     vertical-align: middle;
 }
 
-/* Spaziatura tra link e testo revisore */
+/* Spaziatura tra link e testo con classe fw-bold */
+/* Disposizione in flex con allineamento verticale centrale e gap tra elementi */
 .footer-custom .fw-bold {
     display: flex;
     align-items: center;
     gap: 0.3rem;
 }
 
-/* Per adattare a bootstrap flex */
+/* Media query per schermi piccoli (max 576px) */
+/* Nelle classi con d-flex dentro footer-custom, cambia la direzione da riga a colonna */
+/* Aggiunge gap verticale tra gli elementi */
 @media (max-width: 576px) {
     .footer-custom .d-flex {
         flex-direction: column;
@@ -464,11 +698,20 @@ h1.display-4 {
 
 
 
+
+
+
+
+
+
 /*--------------------------------------------SHOW.BLADE.PHP------------------------------------------------------------------------------------------------------------*/
 
 /* carousel-style.css */
 
 /* Contenitore principale del carosello */
+/* Altezza minima 100vh per occupare tutta la finestra */
+/* Sfondo con gradiente verticale da colore scuro a nero */
+/* Padding verticale per distanziare il contenuto */
 .carousel-container {
     min-height: 100vh;
     background: linear-gradient(to bottom, var(--color-dark-bg), var(--color-black));
@@ -476,7 +719,11 @@ h1.display-4 {
     padding-bottom: 3rem;
 }
 
-/* Styling per l'interno del carosello */
+/* Contenitore interno del carosello */
+/* Bordo sottile bianco fumo */
+/* Ombra dorata soffusa */
+/* Angoli arrotondati */
+/* Nasconde eventuale overflow */
 .carousel-inner-custom {
     border: 1px solid var(--color-white-smoke);
     box-shadow: 0 0 20px var(--color-gold-shadow);
@@ -484,7 +731,10 @@ h1.display-4 {
     overflow: hidden;
 }
 
-/* Contenuto del singolo item */
+/* Contenuto di ogni singolo item del carosello */
+/* Sfondo semi-trasparente nero */
+/* Padding interno consistente */
+/* Layout flex verticale e centrato */
 .carousel-item-content {
     background-color: rgba(0, 0, 0, 0.75);
     padding: 2rem;
@@ -494,30 +744,40 @@ h1.display-4 {
 }
 
 /* Testo all'interno del carosello */
+/* Colore chiaro */
+/* Testo centrato */
 .carousel-text {
     color: var(--color-white-smoke);
     text-align: center;
 }
 
+/* Titolo h5 nel carosello */
+/* Grassetto, margine inferiore ridotto, dimensione font grande */
 .carousel-text h5 {
     font-weight: bold;
     margin-bottom: 0.5rem;
     font-size: 1.75rem;
 }
 
+/* Paragrafi nel carosello */
+/* Margine inferiore e dimensione leggibile */
 .carousel-text p {
     margin-bottom: 0.5rem;
     font-size: 1.25rem;
 }
 
+/* Prezzo evidenziato */
+/* Grassetto, font medio, colore oro */
 .carousel-text .price {
     font-weight: 600;
     font-size: 1rem;
     color: var(--color-gold);
-    /* oro */
 }
 
-/* Immagine dell'articolo */
+/* Immagine associata all’articolo */
+/* Margine sopra per distanziarla dal testo */
+/* Altezza massima 400px, mantiene proporzioni */
+/* Bordo bianco fumo e angoli arrotondati */
 .carousel-img {
     margin-top: 1.5rem;
     max-height: 400px;
@@ -526,13 +786,7 @@ h1.display-4 {
     border-radius: 0.5rem;
 }
 
-
-
-
-
-
-
-
+/* Variabili CSS globali */
 :root {
     --color-gold: #ffd700;
     --color-gold-shadow: rgba(255, 215, 0, 0.3);
@@ -542,13 +796,16 @@ h1.display-4 {
     --color-dark-bg: #121212;
 }
 
-/* Contenitore principale */
+/* Corpo pagina con gradiente di sfondo e colore testo chiaro */
 body {
     background: linear-gradient(to bottom, var(--color-dark-bg), var(--color-black));
     color: var(--color-white-smoke);
 }
 
-/* Header */
+/* Header revisore */
+/* Sfondo grigio scuro, testo chiaro */
+/* Padding interno, angoli arrotondati */
+/* Ombra dorata soffusa */
 .revisor-header {
     background-color: var(--color-dark-gray);
     color: var(--color-white-smoke);
@@ -557,7 +814,9 @@ body {
     box-shadow: 0 0 15px var(--color-gold-shadow);
 }
 
-/* Alert messaggio */
+/* Messaggio alert di successo */
+/* Sfondo con ombra dorata trasparente */
+/* Testo chiaro e bordo dorato */
 .alert-success {
     background-color: var(--color-gold-shadow);
     color: var(--color-white-smoke);
@@ -565,6 +824,9 @@ body {
 }
 
 /* Immagine articolo */
+/* Massima larghezza 100%, altezza max 400px */
+/* Mantiene proporzioni con object-fit */
+/* Bordo bianco fumo arrotondato e ombra dorata */
 .article-img {
     max-width: 100%;
     max-height: 400px;
@@ -574,7 +836,8 @@ body {
     box-shadow: 0 0 10px var(--color-gold-shadow);
 }
 
-/* Dettagli articolo */
+/* Titoli e paragrafi dettagli articolo */
+/* Colore chiaro */
 .article-details h2,
 .article-details h3,
 .article-details h4,
@@ -582,12 +845,16 @@ body {
     color: var(--color-white-smoke);
 }
 
+/* Titoli con classe text-danger */
+/* Colore oro */
 .article-details h3.text-danger,
 .article-details h4.text-danger {
     color: var(--color-gold);
 }
 
-/* Bottoni */
+/* Bottoni success e danger */
+/* Grassetto, padding e angoli arrotondati */
+/* Transizione sul colore di sfondo */
 .btn-success,
 .btn-danger {
     font-weight: bold;
@@ -596,29 +863,53 @@ body {
     transition: background-color 0.3s;
 }
 
+/* Bottone successo */
+/* Sfondo oro, testo nero, senza bordo */
 .btn-success {
     background-color: var(--color-gold);
     border: none;
     color: var(--color-black);
 }
 
+/* Hover bottone successo */
+/* Sfondo chiaro, testo nero */
 .btn-success:hover {
     background-color: var(--color-white-smoke);
     color: var(--color-black);
 }
 
+/* Bottone per azione di pericolo */
+/* Sfondo grigio scuro, bordo e testo oro */
 .btn-danger {
     background-color: var(--color-dark-gray);
     border: 1px solid var(--color-gold);
     color: var(--color-gold);
 }
 
+/* Hover bottone pericolo */
+/* Sfondo oro, testo nero */
 .btn-danger:hover {
     background-color: var(--color-gold);
     color: var(--color-black);
 }
 
-/* Nessun articolo */
+/* Classe per sezioni senza articoli */
+/* Altezza minima 60vh per riempire lo schermo */
 .height-custom {
     min-height: 60vh;
+}
+
+
+
+
+
+
+
+/*------------------------CREATE-ARTICLE-FORM.BLADE.PHP---------------------------------------------*/
+.img-preview {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
 }

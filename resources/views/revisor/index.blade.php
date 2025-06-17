@@ -24,48 +24,65 @@
         {{-- CONTROLLO SE C'È UN ARTICOLO --}}
         @if($article_to_check)
 
-      
-
-
-            {{-- IMMAGINE ARTICOLO --}}
-            @if($article_to_check->img)
-                <div class="text-center my-4">
-                    <img 
-                        src="{{ asset('storage/' . $article_to_check->img) }}" 
-                        class="img-fluid rounded shadow" 
-                        alt="{{ $article_to_check->title }}">
+            {{--USER STORY 5 PUNTO 15------------------------------------------------------------------------------------ --}} 
+            {{-- Sezione immagini associate all'articolo --}}
+            <div class="container my-5">
+                <div class="row justify-content-center gy-4">
+                    @if ($article_to_check->images->count())
+                        @foreach ($article_to_check->images as $key => $image)
+                            <div class="col-6 col-md-4 mb-4">
+                                <img src="{{ Storage::url($image->path) }}" class="img-fluid rounded shadow"
+                                    alt="Immagine {{ $key + 1 }} dell’articolo ‘{{ $article_to_check->title }}’">
+                            </div>
+                        @endforeach
+                    @else
+                        @for ($i = 0; $i < 6; $i++)
+                            <div class="col-6 col-md-4 mb-4 text-center">
+                                <img src="https://picsum.photos/300" alt="immagine segnaposto"
+                                    class="img-fluid rounded shadow">
+                            </div>
+                        @endfor
+                    @endif
                 </div>
-            @endif
+            </div>
 
-     {{-- DETTAGLI ARTICOLO --}}
-<div class="bg-dark p-4 rounded shadow text-white">
-    <h2 class="mb-3">{{ $article_to_check->title }}</h2>
+            {{-- Cosa stiamo facendo:
+                *  Se l’articolo $article_to_check ha delle immagini (ovvero se il count() della collezione restituisce un numero maggiore di 0), per
+                ognuna delle immagini creiamo una colonna e un tag img .
+                
+                *  Se non c'è nessuna immagine, vedremo sempre l’immagine segnaposto.--}}
 
-    {{-- Autore --}}
-    @if($article_to_check->user)
-        <h4 class="text-light mb-2">Autore: {{ $article_to_check->user->name }}</h4>
-    @else
-        <h4 class="text-danger mb-2">Autore non disponibile</h4>
-    @endif
+            {{--USER STORY 5 PUNTO 15 FINE------------------------------------------------------------------------------------ --}}
 
-    {{-- Categoria --}}
-    @if($article_to_check->category)
-        <h5 class="fst-italic text-info mb-3">Categoria: {{ $article_to_check->category->name }}</h5>
-    @else
-        <h5 class="fst-italic text-danger mb-3">{{ __('ui.noCategory') }}</h5>
-    @endif
+            {{-- DETTAGLI ARTICOLO --}}
+            <div class="bg-dark p-4 rounded shadow text-white">
+                <h2 class="mb-3">{{ $article_to_check->title }}</h2>
 
-    {{-- Data --}}
-    <p class="text-secondary fst-italic mb-4">Creato il: {{ $article_to_check->created_at->format('d/m/Y H:i') }}</p>
+                {{-- Autore --}}
+                @if($article_to_check->user)
+                    <h4 class="text-light mb-2">{{ __('ui.author') }}: {{ $article_to_check->user->name }}</h4>
+                @else
+                    <h4 class="text-danger mb-2">{{ __('ui.author_not_available') }}</h4>
+                @endif
 
-    {{-- Descrizione --}}
-    <p class="lh-lg">{{ $article_to_check->description }}</p>
+                {{-- Categoria --}}
+                @if($article_to_check->category)
+                    <h5 class="fst-italic text-info mb-3">{{ __('ui.category') }}: {{ $article_to_check->category->name }}</h5>
+                @else
+                    <h5 class="fst-italic text-danger mb-3">{{ __('ui.noCategory') }}</h5>
+                @endif
 
-    {{-- Altri dettagli opzionali --}}
-    @if($article_to_check->updated_at && $article_to_check->updated_at != $article_to_check->created_at)
-        <p class="text-secondary fst-italic mt-3">Ultima modifica: {{ $article_to_check->updated_at->format('d/m/Y H:i') }}</p>
-    @endif
-</div>
+                {{-- Data --}}
+                <p class="text-secondary fst-italic mb-4">{{ __('ui.created_at') }}: {{ $article_to_check->created_at->format('d/m/Y H:i') }}</p>
+
+                {{-- Descrizione --}}
+                <p class="lh-lg">{{ $article_to_check->description }}</p>
+
+                {{-- Altri dettagli opzionali --}}
+                @if($article_to_check->updated_at && $article_to_check->updated_at != $article_to_check->created_at)
+                    <p class="text-secondary fst-italic mt-3">{{ __('ui.last_modified') }}: {{ $article_to_check->updated_at->format('d/m/Y H:i') }}</p>
+                @endif
+            </div>
 
             {{-- BOTTONI AZIONE --}}
             <div class="d-flex justify-content-between my-4">
@@ -87,10 +104,10 @@
             <div class="row justify-content-center align-items-center text-center" style="min-height: 300px;">
                 <div class="col-md-8">
                     <h3 class="display-6 fst-italic mb-4">
-                             {{ __('ui.no_articles_to_review') }}
+                        {{ __('ui.no_articles_to_review') }}
                     </h3>
                     <a href="{{ route('homepage') }}" class="btn btn-success">
-                     Back to Homepage
+                        Back to Homepage
                     </a>
                 </div>
             </div>

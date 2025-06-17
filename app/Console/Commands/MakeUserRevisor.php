@@ -10,6 +10,26 @@ class MakeUserRevisor extends Command
 
 
 
+
+//   ███████╗██╗███╗   ███╗ ██████╗ ███╗   ██╗███████╗    
+//   ██╔════╝██║████╗ ████║██╔═══██╗████╗  ██║██╔════╝
+//   ███████╗██║██╔████╔██║██║   ██║██╔██╗ ██║█████╗  
+//   ╚════██║██║██║╚██╔╝██║██║   ██║██║╚██╗██║██╔══╝  
+//   ███████║██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║███████╗
+//   ╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+
+
+
+
+ //  ██████╗ 
+ //  ╚═══██╗
+ //   █████╔╝
+ //  ╚═══██╗ 
+ //  ██████╔╝
+ //  ╚═════╝ 
+
+
+
 /// USER STORY 3 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////                        CREAZIONE DEL RUOLO REVISORE
@@ -87,14 +107,6 @@ class MakeUserRevisor extends Command
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------
-
-
-//   ███████╗██╗███╗   ███╗ ██████╗ ███╗   ██╗███████╗    
-//   ██╔════╝██║████╗ ████║██╔═══██╗████╗  ██║██╔════╝
-//   ███████╗██║██╔████╔██║██║   ██║██╔██╗ ██║█████╗  
-//   ╚════██║██║██║╚██╔╝██║██║   ██║██║╚██╗██║██╔══╝  
-//   ███████║██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║███████╗
-//   ╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 
 
 //                               DASHBOARD DEI REVISORI
@@ -205,20 +217,6 @@ class MakeUserRevisor extends Command
 
 
            
-// ███╗   ███╗███████╗████████╗ █████╗ ██╗         
-// ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██║          
-// ██╔████╔██║█████╗     ██║   ███████║██║            
-// ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║      
-// ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║███████╗    
-// ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝   
-
-                                           //  ██████╗  ███████╗  █████╗  ██████╗ 
-                                           // ██╔═══    ██╔════╝ ██╔══██╗ ██╔══██╗
-                                           // ██║  ███╗ █████╗   ███████║ ██████╔╝
-                                           // ██║   ██║ ██╔══╝   ██╔══██║ ██╔═══╝ 
-                                           // ╚██████╔╝ ███████╗ ██║  ██║ ██║  ██╗
-                                           //  ╚═════╝  ╚══════╝ ╚═╝  ╚═╝ ╚═╝  ╚═╝
-
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -352,14 +350,12 @@ class MakeUserRevisor extends Command
 
 
 
-//   ███████╗██╗███╗   ███╗ ██████╗ ███╗   ██╗███████╗    
-//   ██╔════╝██║████╗ ████║██╔═══██╗████╗  ██║██╔════╝
-//   ███████╗██║██╔████╔██║██║   ██║██╔██╗ ██║█████╗  
-//   ╚════██║██║██║╚██╔╝██║██║   ██║██║╚██╗██║██╔══╝  
-//   ███████║██║██║ ╚═╝ ██║╚██████╔╝██║ ╚████║███████╗
-//   ╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
-
-
+//   ██╗   ██████╗ 
+//  ███║  ██╔═████╗
+//  ╚██║  ██║██╔██║
+//   ██║  ████╔╝██║
+//   ██║  ╚██████╔╝
+//  ╚═╝   ╚═════╝ 
 
 
 /// USER STORY 10 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -544,6 +540,16 @@ class MakeUserRevisor extends Command
 //⠀⠀⠀⢀⣤⣤⣤⣶⣿⣿⣿⣿⠿⠿⠟⠋⢹⠇⠀⠀⢀⣼⣿⣿⣿⣿⣿⡿⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
 //⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⢀⡏⠀⠀⢀⣾⠋⣹⣿⣿⣿⡟⠀⠀⣸⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
 //⢠⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⡼⠀⠀⢀⣾⠏⢀⣿⣿⣿⠋⠀⠀⣰⣿⣧⡀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+
+
+
+//  ██╗  ██╗
+//  ██║  ██║
+//  ███████║
+//  ╚════██║
+//       ██║
+//       ╚═╝
+
 
                 
 
@@ -745,6 +751,238 @@ class MakeUserRevisor extends Command
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  
+
+
+
+ //  ██████╗ 
+ //  ██╔════╝
+ //  █████╗  
+ // ╚════██╗
+ //  ██████╔╝
+ // ╚═════╝ 
+
+//-----------------------USER STORY 5-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// MODELLO IMAGE
+//     MIGRAZIONE
+
+
+
+// 1
+
+//  Con la User Story 5 introduciamo la possibilità per l’utente di associare agli articoli una o più immagini in blocco al momento della creazione.
+
+//  Per fare ciò creiamo nel progetto una nuova entità, Image, dotata di modello e migrazione:
+
+//  php artisan make:model Image -m
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 2 
+
+// Gestiamo quindi la migrazione: (ANDIAMO NELLA MIGRAZIONE  ---> create_images_table.php  <-------)
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 3
+
+//  Lanciamo quindi la migrazione:
+
+//    1 php artisan migrate
+//    2 php artisan migrate:rollback
+//    3 php artisan migrate
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 4
+
+//  RELAZIONI
+
+//  Gestiamo quindi il modello ---------> Image.php <-----------------------------
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//  5
+
+//Come sappiamo le funzioni di relazione sono sempre a doppio senso: 
+// creiamo la corrispettiva funzione in  ------> Article.php <--------------
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 6
+
+
+//  AGGIORNAMENTO DEL FORM DI CREAZIONE
+
+//  PERMETTERE A LIVEWIRE DI MANIPOLARE DEI FILES
+
+//  Da questo momento, consentiremo all’utente di caricare insieme all’articolo dei file multimediali:
+//  le immagini. Ciò in livewire è reso possibile e gestito dal trait Livewire/WithFileUploads.
+
+//  Specifichiamo, dunque, in  --------> CreateArticleForm.php <----------
+//  che vogliamo sfruttare questo trait in questa maniera:
+
+    //  use Livewire\WithFileUploads;
+    //  class CreateArticleForm extends Component
+    //  {
+    //   use withFileUploads;
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 7
+
+//    Avremo poi bisogno di specificare due nuovi attributi:  ( in  --------> CreateArticleForm.php <---------- )
+
+//    public $images =[]; // USER STORY 5
+//    public $temporary_images; // USER STORY 5
+
+//  la proprietà $images ci servirà successivamente per creare le singole istanze di classe Image da salvare nel database.
+//  la proprietà $temporary_images ci servirà per gestire le immagini temporanee appena caricate dall’utente
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 8
+
+
+//      AGGIORNAMENTO DEL COMPONENTE FRONTEND
+
+//  Andiamo quindi a gestire il componente frontend.
+//   In   ----------------> create-article-form.blade.php <----------------------
+// Analizziamo quanto abbiamo scritto: vedi file con commento userstory5 create-article-form.blade.php
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 9
+
+//  LOGICA DI VALIDAZIONE DELLE IMMAGINI
+
+//  Abbiamo però bisogno di un metodo che valorizzi $images in ----> CreateArticleForm.php :  <-----------
+// VEDI PUBLIC FUNCTION UPDATEDTEMPORARYIMAGES()
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 10 
+
+//  PERMETTERE ALL’UTENTE DI ELIMINARE DELLE IMMAGINI DAL FORM
+
+//   Oltre alla preview delle immagini, vogliamo dare all’utente la possibilità di eliminare
+//  le immagini singolarmente in fase di caricamento.
+
+
+//  Creiamo quindi una funzione apposita in   ----> CreateArticleForm.php <------------
+// VEDI FUNCTION REMOVEIMAGE()
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 11 
+
+// Una volta creata la funzione, diamo la possibilità all’utente di utilizzarla.
+// Modifichiamo dunque il form di creazione in  ----> create-article-form.blade.php <----
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 12
+
+// AGGIORNAMENTO DELLA LOGICA DI SALVATAGGIO
+
+//  Aggiorniamo finalmente la funzione store() in ---->CreateArticleForm.php<------
+//  per salvare nel database anche le immagini da collegare all’articolo al momento della sua creazione.
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 13
+
+//  Al submit del form, per evitare che rimangano le preview delle immagini precedenti,
+//  dobbiamo aggiornare anche il metodo custom cleanForm() :
+//  ---->CreateArticleForm.php<------ 
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 14
+
+//  VISUALIZZAZIONE FRONTEND DELLE IMMAGINI
+
+// Poiché stiamo salvando le immagini nello storage, ricordiamoci di creare
+//  il collegamento con la cartella public:
+// 1 --->  php artisan storage:link <-----
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 15
+
+// A questo punto, possiamo far in modo di visualizzare, laddove ci siano,
+// le immagini effettivamente associate agli articoli invece che le
+// immagini segnaposto utilizzate finora.
+
+// Iniziamo modificando la dashboard del revisore.
+
+//   REVISOR INDEX
+// In resources/views/revisor/card.blade.php dobbiamo modificare il carosello 
+// che avevamo impostato come segnaposto in precedenza:   
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 16   
+
+//  AGGIORNAMENTO DELLE CARD DEGLI ARTICOLI
+
+//  Permettiamo di vedere anche nella card una delle immagini caricate dall’utente invece di quella segnaposto, nel caso ci sia.
+// Modifichiamo dunque il tag img del componente ----------------> card.blade.php :  <-------------------
+
+
+
+    //.....................................CODICE IN CARD.BLADE.PHP........................................................................................................
+    //  <img src="{{ $article->images->isNotEmpty() ? Storage::url($article->images->first()->path) : 'https://picsum.photos/200' }}" alt="Immagine articolo">
+    //   <h5 class="card-title mb-1">{{ $article->title }}</h5>
+    //......................................CODICE IN CARD.BLADE.PHP FINE..................................................................................................................
+
+
+
+    //  Stiamo utilizzando un operatore ternario:
+
+    // 1 $article->images->isNotEmpty() : controlliamo che la collezione delle immagini relazionate all’articolo non sia vuota:
+
+    //  1a Storage::url($article->images->first()->path) : se la condizione è rispettata, e quindi c'è almeno una immagine, verrà
+    // eseguito questo codice. Al metodo statico della classe Storage url() , utilizzato per generare un URL pubblico per un file archiviato
+    // nel sistema di storage, passiamo il path della prima immagine della collezione relazionata all’articolo
+
+    //   2a   Altrimenti visualizziamo l’immagine di default (in questo caso quella di lorem picsum)
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 17  AGGIORNAMENTO DI ARTICLE SHOW
+
+//   In    -----> views/article/show.blade.php :  <---------
+
+// * Se ci sono delle immagini, viene generato un carosello in cui, per ognuna delle immagini, viene generata una slide
+// * Solo se c'è più di una immagine vengono fatti visualizzare i bottoni necessari a cambiare slide
+// * Se non ci sono immagini, vediamo quella di default.
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 

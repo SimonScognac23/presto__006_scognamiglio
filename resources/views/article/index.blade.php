@@ -27,7 +27,6 @@
 
   </x-layout>
 
-
 {{-- 
     Passiamo l'articolo al componente x-card.
     Utilizziamo @forelse per controllare se la collezione $articles contiene elementi. 

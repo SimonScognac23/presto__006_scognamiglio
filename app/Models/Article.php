@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Scout\Searchable;
 
+use App\Models\Image;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 
 
@@ -124,6 +127,29 @@ public function toSearchableArray()
 
 
 //----------------------------------USER STORY 10 FINE----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+//--------------------------------USER STORY 5 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ public function images(): HasMany
+ {
+    return $this->hasMany(Image::class);
+ }
+
+ //  Con questa funzione stiamo specificando che un singolo 
+ //  oggetto di classe Article può avere più oggetti di classe Image.
+
+ //  Ricordiamoci di importare le classi:
+ //  use App\Models\Image;
+ //  use Illuminate\Database\Eloquent\Relations\HasMany;
+
+
+
+
+ //--------------------------------USER STORY 5 FINE  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

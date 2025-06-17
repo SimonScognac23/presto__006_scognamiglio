@@ -37,7 +37,8 @@
               name="email"
               id="email"
               class="form-control"
-              placeholder="Inserisci la tua email"
+             placeholder="{{ __('ui.email_placeholder') }}"
+
               required
             >
           </div>
@@ -50,7 +51,7 @@
               name="name"
               id="name"
               class="form-control"
-              placeholder="Inserisci il tuo nome"
+             placeholder="{{ __('ui.name_placeholder') }}"
               required
             >
           </div>
@@ -63,7 +64,7 @@
               name="password"
               id="password"
               class="form-control"
-              placeholder="Crea una password"
+             placeholder="{{ __('ui.password_placeholder') }}"
               required
               minlength="8"
             >
@@ -77,7 +78,7 @@
               name="password_confirmation"
               id="password_confirmation"
               class="form-control"
-              placeholder="Conferma la password"
+           placeholder="{{ __('ui.confirm_password_placeholder') }}"
               required
               minlength="8"
             >
@@ -89,7 +90,7 @@
              {{ __('ui.register') }}
             </button>
           </div>
-
+            
         </form>
         <!-- END FORM -->
 

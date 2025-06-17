@@ -13,24 +13,19 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
  public $categories = [
-    'elettronica',
-    'moda',
-    'animali domestici',
-    'motori',
-    'sport',
-    'libri e riviste',
-    'casa e giardino',
-    'giocattoli',
-    'informatica',
-    'telefonia',
-    'salute e bellezza',
-    'musica e strumenti musicali',
-    'film e serie TV',
-    'collezionismo',
-    'videogiochi',
-    'fai da te',
-    'alimentari',
-    'arte e artigianato'
+  'space_marines',
+    'chaos',
+    'orki',
+    'tau',
+    'eldar',
+    'necron',
+    'tyranidi',
+    'imperial_guard',
+    'sisters_of_battle',
+    'dark_eldar',
+    'adeptus_mechanicus',
+    'grey_knights',
+    'genestealer_cults',
 ];
 
 
