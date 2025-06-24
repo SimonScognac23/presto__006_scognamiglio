@@ -93,13 +93,41 @@ public $temporary_images; // USER STORY 5
     ]);
 
 
-    // -----------USER STORY 5 PUNTO 12------------------
+// -----------USER STORY 5 PUNTO 12-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if (count($this->images) > 0) {
     foreach ($this->images as $image) {
         $article->images()->create(['path' => $image->store('img', 'public')]);
+
+
+        //....................  USER STORY 6 PUNTO 7 ....................
+
+        $newFileName = "articles/{$this->article->id}";  // USER STORY 6 PUNTO 7
+        $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]); // // USER STORY 6 PUNTO 7
+        dispatch(new ResizeImage($newImage->path, 300, 300)); // USER STORY 6 PUNTO 7
+
     }
+     File::deleteDirectory(storage_path('/app/livewire-tmp')); // USER STORY 6 PUNTO 7
+
+
 }
-  // ------------------FINE USER STORY 5 PUNTO 12 ------------------
+
+                      
+// A riga 104, $newFileName = "articles/{$this->article->id}"; : costruisce il nome del file per l'immagine con la struttura "articles/{id_articolo}".
+
+// Riga 105, $newImage = $this->article->images()->create([...]); : crea un nuovo record collegato all'articolo corrente nella tabella images tramite la relazione one-to-many tra articoli e immagini. Il file dell’immagine viene salvato nello Storage in un percorso che avrà questa struttura: storage/app/public/articles/idArticolo/nomeFile .
+
+
+// Riga 106 dispatch(new ResizeImage($newImage->path, 300, 300)); : il metodo dispatch() serve ad inviare un job ( ResizeImage in questo caso) ad una coda di lavoro. Stiamo quindi creando un nuovo oggetto di classe ResizeImage e passiamo al costruttore i parametri reali: il path dell’immagine appena salvata e le dimensioni che vogliamo per il crop.
+
+
+// Riga 109: File::deleteDirectory(storage_path('/app/livewire-tmp')); : elimina la directory temporanea di Livewire, utilizzata per caricare temporaneamente le immagini prima del salvataggio.
+
+
+
+          //....................  USER STORY 6 PUNTO 7 FINE ....................
+
+
+// ------------------FINE USER STORY 5 PUNTO 12 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Reset del form
     $this->clearForm();

@@ -6,7 +6,7 @@
     <div class="img-wrapper">
       <img
         src="{{ $article->images->isNotEmpty() 
-                ? Storage::url($article->images->first()->path) 
+                ? $article->images->first()->getUrl(300,300)
                 : 'https://picsum.photos/200' }}"
         alt="Immagine articolo"
       >

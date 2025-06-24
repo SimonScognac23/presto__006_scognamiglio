@@ -979,6 +979,220 @@ class MakeUserRevisor extends Command
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//   ███████╗  
+//  ██╔══════╝ 
+//  ██║        
+//  ███████╗   
+//  ██╔═══██╗  
+//  ██║   ██║  
+//  ██║   ██║  
+//  ╚██████╔╝  
+//   ╚══════╝  
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// USER STORY 6
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// USER STORY #6 - CROP AUTOMATICO DELLE IMMAGINI
+
+//  1  
+//  La User Story 6 ci richiede di gestire le dimensioni delle immagini inserite dagli utenti: le immagini al caricamento saranno automaticamente
+//  ridimensionate in base a dei valori stabiliti da noi.
+
+//   Per fare ciò abbiamo bisogno di installare un pacchetto esterno a Laravel, ----> Spatie Image.  <------
+
+
+//   Per poter utilizzare --> Spatie <-- abbiamo bisogno di installare nella nostra macchina 
+// una nuova estensione di PHP , ----> Imagick. <---  VEDI USER STORY SU COME INSTALLARLO
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//  2 CREAZIONE DEL JOB
+
+//  Una volta installato imagick, possiamo installare Spatie nel nostro progetto senza problemi:
+
+//  ------> composer require spatie/image <------------
+
+
+//  Come da US, il crop delle immagini deve avvenire in modalità asincrona:
+//  un lavoro asincrono (job) è un'attività o un processo che viene
+//  eseguito in background, separatamente dal flusso principale dell'applicazione.
+//  Questo significa che il lavoro non blocca l'utente o altre richieste in attesa di una risposta.
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//  3
+
+//   Creiamo quindi un job dedicato al crop delle immagini:
+
+// -------->   php artisan make:job ResizeImage     <-----------------
+//  Questo comando creerà in app una sottocartella Jobs , contenente il file ---> ResizeImage.php .<-------
+// Le classi Job hanno una struttura abbastanza semplice:
+//  - sfruttano l'OOP, quindi possono avere attributi e il metodo costruttore;
+//  - la logica effettiva del job viene gestita dal metodo handle() .
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//  4
+
+//   Iniziamo da attributi e costruttore:  ----> andiamo su ResizeImage.php <-----------------
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 5 
+
+//  LOGICA DEL JOB
+
+// Modifichiamo quindi il metodo handle()  ----> andiamo su ResizeImage.php <-----------------
+
+// Ricordiamoci di importare la classe: --------> use Spatie\Image\Image;   <--------------
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 6
+
+// Per specificare al nostro ambiente di lavoro che indentiamo lavorare in asincrono e quindi con le code,
+//  assicuriamoci che in .env sia scritto
+// quanto segue alla chiave QUEUE_CONNECTION
+
+// QUEUE_CONNECTION=database
+// Con questa riga di codice stiamo specificando che il job viene memorizzato in una tabella del database e successivamente elaborato da un
+// processo (worker) separato. I worker leggono continuamente questa tabella e recuperano i job da eseguire: questo consente
+// all'applicazione di rispondere immediatamente alla richiesta iniziale e di eseguire il job in background.
+
+//                                      ...............................................
+
+// Per creare questa e le altre tabelle che servono ai job per funzionare dobbiamo lanciare il seguente comando:
+//            ------------------> php artisan queue:table <------------------
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 7 AGGIORNAMENTO DELLA LOGICA DI SALVATAGGIO
+
+// Ora che abbiamo impostato la logica del job, dobbiamo specificare quando farlo partire:
+//  noi vogliamo che le immagini inserite dall’utente
+// siano automaticamente croppate.
+
+//  Dovremo quindi modificare la funzione store() in ----------> CreateArticleForm.php :  <------------------------
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 8 
+
+// Per attivare le code, e quindi il job, dobbiamo sempre lanciare un comando nel terminale:
+//     -----------------> php artisan queue:work <------------------
+
+
+// Da questo momento in poi, avremo sempre tre terminali attivi:
+//          php artisan serve per il server;
+//          npm run dev per gli assets;
+//          php artisan queue:work per mantenere attivi i jobs.
+
+
+
+
+
+
+// !!!!   PER I WINDOWS: per fare in modo che tutto funzioni dobbiamo effettuare una modifica sul file php.ini presente nella cartella di
+//PHP esterna al progetto. Dobbiamo infatti abilitare due estensioni, gd e exif, in questa maniera: 
+    // EXTENSION=GD
+    // EXTENSION=EXIF
+    // Ricordiamoci di salvare il file, chiudere i terminali attivi e riattivarli.
+
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 9
+
+// VISUALIZZAZIONE DELLE IMMAGINI
+
+// LOGICA DI VISUALIZZAZIONE
+
+// Ora che abbiamo salvato nello storage le immagini ridimensionate, abbiamo bisogno di
+//  costruire dei metodi per consentire di recuperarle facilmente
+//  Andiamo quindi nel modello ------------------> Image.php <---------------- :
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 10
+
+// Andiamo quindi a modificare i file blade che prevedono la visualizzazione delle immagini.
+
+// AGGIORNAMENTO DEL REVISOR INDEX
+
+
+//               .........................................................................
+
+
+//               INDEX.BLADE.PHP (REVISOR)
+// Iniziamo da ---------------> views/revisor/index.blade.php :<------------------
+
+// Nel file inde.blade.php(revisor) abbiamo modificato la riga 34 da    <img src="{{ Storage::url($image->path) }}" class="img-fluid rounded shadow"    a     <img src="{{ $image->getUrl(300,300) }}" class="img-fluid rounded shadow"
+
+// All’interno del foreach che si occupa di ciclare le immagini, al posto del classico Storage::url() stiamo richiamando, 
+// a partire dalla singola immagine ciclata, il metodo getUrl appena creato.
+// !!!!!!!!!!!Le dimensioni passate a getUrl devono essere le stesse specificate in ---> CreateArticleForm . <------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 11 Proseguiamo con le altre pagine.
+
+
+// AGGIORNAMENTO DELLE CARD
+
+//Mantenendo lo stesso ternario impostato in precedenza,
+//  invece che richiamare Storage::url() sulla prima immagine, a partire dalla
+// prima immagine della collezione richiamiamo getUrl() con le stesse dimensioni.
+
+// da         <div class="img-wrapper">
+//     <img
+//        src="{{ $article->images->isNotEmpty() 
+//                ? Storage::url($article->images->first()->path) 
+//                : 'https://picsum.photos/200' }}"
+//        alt="Immagine articolo"
+//      >
+//    </div>
+
+// a 
+
+// ... $article->images->getUrl.....
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 12
+
+// AGGIORNAMENTO DI ARTICLE SHOW
+
+// In article/show.blade.php avremo quindi una modifica molto simile a quella apportata a ---> revisor/index.blade.php <----
+
+// A questo punto sulla piattaforma potremmo vedere che alcune immagini risultano corrotte: non tutte le immagini salvate nel database a
+// questo punto, infatti, hanno un corrispettivo croppato, e dunque getUrl non potrà recuperarle correttamente.
+
+// Da User Story ci è però richiesto di vedere tutte le immagini nel sito con la stessa dimensione: essendo ancora in fase di development,
+// possiamo fare il fresh del database. Da questo momento in poi, quindi, tutte le immagini saranno salvate con le dimensioni da noi scelte e,
+// quindi, non avremo nessun problema di visualizzazione.
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
