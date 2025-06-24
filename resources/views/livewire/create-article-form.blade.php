@@ -118,6 +118,7 @@ modo di visualizzare le preview delle immagini è necessario dare a questa class
                 </select>
                 <div class="text-danger">@error('category') {{ $message }} @enderror</div>
             </div>
+            
 
 
             <!-- USER STORY 5 PUNTO 8-->

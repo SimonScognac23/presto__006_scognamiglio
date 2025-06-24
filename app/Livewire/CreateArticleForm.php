@@ -7,8 +7,8 @@ use App\Models\Article;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
-
-
+use App\Jobs\ResizeImage;
+use Illuminate\Support\Facades\File;
 
 
 
@@ -87,7 +87,7 @@ public $temporary_images; // USER STORY 5
         'category_id' => $this->category,
         'user_id' => Auth::id(),
 
- 'img' => $this->img ? $this->img->store('img', 'public') : null
+
        
 
     ]);
@@ -96,13 +96,13 @@ public $temporary_images; // USER STORY 5
 // -----------USER STORY 5 PUNTO 12-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if (count($this->images) > 0) {
     foreach ($this->images as $image) {
-        $article->images()->create(['path' => $image->store('img', 'public')]);
+      
 
-
+        
         //....................  USER STORY 6 PUNTO 7 ....................
 
-        $newFileName = "articles/{$this->article->id}";  // USER STORY 6 PUNTO 7
-        $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]); // // USER STORY 6 PUNTO 7
+        $newFileName = "articles/{$article->id}";  // USER STORY 6 PUNTO 7
+        $newImage = $article->images()->create(['path' => $image->store($newFileName, 'public')]); // // USER STORY 6 PUNTO 7
         dispatch(new ResizeImage($newImage->path, 300, 300)); // USER STORY 6 PUNTO 7
 
     }
@@ -134,7 +134,7 @@ if (count($this->images) > 0) {
 
       return redirect()->route('homepage')->with('message', 'Articolo creato');
 
-
+//-------------------------FINE USER STORY 5 PUNTO 12 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  
 }
 

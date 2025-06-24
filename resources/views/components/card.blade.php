@@ -4,12 +4,13 @@
   <div class="card-body d-flex flex-column justify-content-between h-100">
     
     <div class="img-wrapper">
-      <img
-        src="{{ $article->images->isNotEmpty() 
-                ? $article->images->first()->getUrl(300,300)
-                : 'https://picsum.photos/200' }}"
-        alt="Immagine articolo"
-      >
+    <img
+  src="{{ $article->images->isNotEmpty() 
+          ? $article->images->first()->getUrl()
+          : 'https://picsum.photos/200' }}"
+  alt="Immagine articolo"
+>
+
     </div>
 
     <div class="text-center mb-3">
